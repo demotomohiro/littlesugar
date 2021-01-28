@@ -10,3 +10,7 @@ srcDir        = "src"
 # Dependencies
 
 requires "nim >= 1.4.2"
+
+task test, "Run tests":
+  selfExec "c -r src/littlesugar/namedWhile.nim"
+  selfExec "c -r src/littlesugar/withAliases.nim"
