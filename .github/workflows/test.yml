@@ -3,10 +3,14 @@ on: [push, pull_request]
 jobs:
   nimble_test:
     name: nimble test
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        nim: ['stable', 'devel']
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
       - uses: jiro4989/setup-nim-action@v1
         with:
-          nim-version: 'stable'
+          nim-version: ${{ matrix.nim }}
       - run: nimble test -Y
