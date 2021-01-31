@@ -1,0 +1,5 @@
+waSideEffect	withAliases.html#waSideEffect	WithAliasesFlag.waSideEffect	
+waCompileTime	withAliases.html#waCompileTime	WithAliasesFlag.waCompileTime	
+WithAliasesFlag	withAliases.html#WithAliasesFlag	withAliases: WithAliasesFlag	
+withAliases	withAliases.html#withAliases.m,static[set[WithAliasesFlag]],varargs[untyped]	withAliases: withAliases(flags: static[set[WithAliasesFlag]]; args: varargs[untyped]): untyped	
+doWithAliases	withAliases.html#doWithAliases.t,varargs[untyped]	withAliases: doWithAliases(args: varargs[untyped]): untyped	
