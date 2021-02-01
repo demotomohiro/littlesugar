@@ -17,8 +17,8 @@ macro withAliases*(flags: static[set[WithAliasesFlag]]; args: varargs[untyped]):
   ## creating a new scope that cannot access local variables declared in outside of the scope.
   ## You can access only aliases specified in arguments.
   ##
-  ## You can still declare both an alias of seq and an alias of that seq at same time
-  ## and modify the seq without generating compile errors.
+  ## You can still declare both an alias of a seq and an alias of the element
+  ## of that seq at same time and modify them without generating compile errors.
   ## But you can find such error easily by checking arguments.
   ## When Nim implements "Aliasing restrictions in parameter passing",
   ## that should become compile error.
@@ -34,6 +34,12 @@ macro withAliases*(flags: static[set[WithAliasesFlag]]; args: varargs[untyped]):
   ##   It creates mutable alias with specified name
   ##
   ## You can also declare small function that can be used as alias of function/procedure.
+  ##
+  ## When `flags` is empty, making side effects in statements under `withAliases`
+  ## is compile error like `func`.
+  ## When `waSideEffect` is set to `flags`, making side effects is not compile error.
+  ## When `waCompileTime` is set to `flags`, statements under `withAliases` are
+  ## executed at compile time.
   ##
   ## Restrictions:
   ##   - You cannot use break or continue for a loop/block outside of `withAliases`
@@ -150,6 +156,7 @@ macro withAliases*(flags: static[set[WithAliasesFlag]]; args: varargs[untyped]):
   result = newTree(nnkStmtListExpr, procDecl, callProc)
 
 template doWithAliases*(args: varargs[untyped]): untyped =
+  ## Same to `withAliases({waSideEffect}, ...)`
   withAliases({waSideEffect}, args)
 
 when isMainModule:
