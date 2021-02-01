@@ -146,13 +146,14 @@ function main() {
 
 <p>Creates new scope with aliases so that you can use them safely.</p>
 <p>When you use an alias of an element of seq or other collection type, that alias can become invalid pointer when you add or delete an element to it or resize it. These operation might move some elements in it or reallocate internal heap. Aliases are actually pointer and it might become pointer to wrong object or freed memory after that. This macro prevends modification of the collection after creating aliases by creating a new scope that cannot access local variables declared in outside of the scope. You can access only aliases specified in arguments.</p>
-<p>You can still declare both an alias of seq and an alias of that seq at same time and modify the seq without generating compile errors. But you can find such error easily by checking arguments. When Nim implements &quot;Aliasing restrictions in parameter passing&quot;, that should become compile error. See: <a class="reference external" href="https://nim-lang.org/docs/manual_experimental.html#aliasing-restrictions-in-parameter-passing">https://nim-lang.org/docs/manual_experimental.html#aliasing-restrictions-in-parameter-passing</a></p>
+<p>You can still declare both an alias of a seq and an alias of the element of that seq at same time and modify them without generating compile errors. But you can find such error easily by checking arguments. When Nim implements &quot;Aliasing restrictions in parameter passing&quot;, that should become compile error. See: <a class="reference external" href="https://nim-lang.org/docs/manual_experimental.html#aliasing-restrictions-in-parameter-passing">https://nim-lang.org/docs/manual_experimental.html#aliasing-restrictions-in-parameter-passing</a></p>
 <p>You can declare aliases in 3 ways.</p>
 <ul class="simple"><li>Specify identifier as is It creates immutable alias with same name.</li>
 <li>aliasname = expression It creates immutable alias with name specified in left side of <tt class="docutils literal"><span class="pre">=</span></tt> operator.</li>
 <li>aliasname from expression It creates mutable alias with specified name</li>
 </ul>
 <p>You can also declare small function that can be used as alias of function/procedure.</p>
+<p>When <tt class="docutils literal"><span class="pre">flags</span></tt> is empty, making side effects in statements under <tt class="docutils literal"><span class="pre">withAliases</span></tt> is compile error like <tt class="docutils literal"><span class="pre">func</span></tt>. When <tt class="docutils literal"><span class="pre">waSideEffect</span></tt> is set to <tt class="docutils literal"><span class="pre">flags</span></tt>, making side effects is not compile error. When <tt class="docutils literal"><span class="pre">waCompileTime</span></tt> is set to <tt class="docutils literal"><span class="pre">flags</span></tt>, statements under <tt class="docutils literal"><span class="pre">withAliases</span></tt> are executed at compile time.</p>
 <dl class="docutils"><dt>Restrictions:</dt>
 <dd><ul class="simple"><li>You cannot use break or continue for a loop/block outside of <tt class="docutils literal"><span class="pre">withAliases</span></tt></li>
 <li>Return statements within <tt class="docutils literal"><span class="pre">withAliases</span></tt> block does not exit from a outside proc. It exits from <tt class="docutils literal"><span class="pre">withAliases</span></tt> block and returned value become value of <tt class="docutils literal"><span class="pre">withAliases</span></tt>.</li>
@@ -211,7 +212,7 @@ function main() {
 <dt><pre><span class="Keyword">template</span> <a href="#doWithAliases.t%2Cvarargs%5Buntyped%5D"><span class="Identifier">doWithAliases</span></a><span class="Other">(</span><span class="Identifier">args</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">untyped</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
 <dd>
 
-
+Same to <tt class="docutils literal"><span class="pre">withAliases({waSideEffect}, ...)</span></tt>
 
 </dd>
 
@@ -224,7 +225,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2021-02-01 03:12:48 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2021-02-01 11:41:14 UTC</small>
       </div>
     </div>
   </div>
