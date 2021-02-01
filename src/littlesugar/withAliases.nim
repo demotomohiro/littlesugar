@@ -42,38 +42,51 @@ macro withAliases*(flags: static[set[WithAliasesFlag]]; args: varargs[untyped]):
   ##
   ## For example:
   ##
-  ##  .. code-block:: nim
-  ##    var
-  ##      a = 1
-  ##      b = @[1, 2]
-  ##    let r = withAliases({}, a, x from b[0], y = b[1], da(x) = doAssert(x), f(x, y) = x + y):
-  ##      x = a + y
-  ##      da(x == 3)
-  ##      da(f(a, y) == 3)
-  ##      x + a + y
+  ## .. code-block:: nim
+  ##   var
+  ##     a = 1
+  ##     b = @[1, 2]
+  ##   let r = withAliases({}, a, x from b[0], y = b[1], da(x) = doAssert(x), f(x, y) = x + y):
+  ##     x = a + y
+  ##     da(x == 3)
+  ##     da(f(a, y) == 3)
+  ##     x + a + y
   ##
-  ##    doAssert r == 6
+  ##   doAssert r == 6
   ##
-  ##  transforms to the code like this:
+  ## transforms to the code like this:
   ##
-  ##  .. code-block:: nim
-  ##    var
-  ##      a = 1
-  ##      b = @[1, 2]
-  ##    func genSym1234(a: auto; x: var auto; y: auto): auto {.inline.} =
-  ##      func da(x {.inject.}: auto): auto {.inline.} =
-  ##        doAssert(x)
+  ## .. code-block:: nim
+  ##   var
+  ##     a = 1
+  ##     b = @[1, 2]
+  ##   func genSym1234(a: auto; x: var auto; y: auto): auto {.inline.} =
+  ##     func da(x {.inject.}: auto): auto {.inline.} =
+  ##       doAssert(x)
   ##
-  ##      func f(x {.inject.}: auto; y {.inject.}: auto): auto {.inline.} =
-  ##        x + y
+  ##     func f(x {.inject.}: auto; y {.inject.}: auto): auto {.inline.} =
+  ##       x + y
   ##
-  ##      x = a + y
-  ##      da(x == 3)
-  ##      da(f(a, y) == 3)
-  ##      x + a + y
+  ##     x = a + y
+  ##     da(x == 3)
+  ##     da(f(a, y) == 3)
+  ##     x + a + y
   ##
-  ##    let r = genSym1234(a, b[0], b[1])
-  ##    doAssert r == 6
+  ##   let r = genSym1234(a, b[0], b[1])
+  ##   doAssert r == 6
+  runnableExamples:
+    let
+      foo = 1
+      bar = 2
+    let  a = withAliases({}, x = foo, bar):
+      x + bar
+    doAssert a == 3
+
+    var b = [(n: 1, s: "aaa"), (n: 2, s: "b")]
+    withAliases({waSideEffect}, x from b[0].n, y = b[0].s, z from b[1]):
+      x += y.len
+      z.s &= $z.n
+    doAssert b == [(n: 4, s: "aaa"), (n: 2, s: "b2")]
 
   func newIdentDefs(name: NimNode; isVar: bool): NimNode =
     newIdentDefs(
