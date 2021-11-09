@@ -1,0 +1,1 @@
+bitwiseCopy	bitwiseCopy.html#bitwiseCopy,T,U	bitwiseCopy: bitwiseCopy[T, U](dest: var T; source: U)	

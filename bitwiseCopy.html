@@ -17,7 +17,7 @@
 <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600' rel='stylesheet' type='text/css'/>
 
 <!-- CSS -->
-<title>Index</title>
+<title>src/littlesugar/bitwiseCopy</title>
 <link rel="stylesheet" type="text/css" href="nimdoc.out.css">
 
 <script type="text/javascript" src="dochack.js"></script>
@@ -69,37 +69,87 @@ window.addEventListener('DOMContentLoaded', main);
 <body>
 <div class="document" id="documentId">
   <div class="container">
-    <h1 class="title">Index</h1>
-    Modules: <a href="bitwiseCopy.html">bitwiseCopy</a>, <a href="namedWhile.html">namedWhile</a>, <a href="withAliases.html">withAliases</a>.<br/><p /><h2>API symbols</h2>
-<dl><dt><a name="bitwiseCopy" href="#bitwiseCopy"><span>bitwiseCopy:</span></a></dt><dd><ul class="simple">
-<li><a class="reference external"
-          data-doc-search-tag="bitwiseCopy: bitwiseCopy[T, U](dest: var T; source: U)" href="bitwiseCopy.html#bitwiseCopy%2CT%2CU">bitwiseCopy: bitwiseCopy[T, U](dest: var T; source: U)</a></li>
-          </ul></dd>
-<dt><a name="doWithAliases" href="#doWithAliases"><span>doWithAliases:</span></a></dt><dd><ul class="simple">
-<li><a class="reference external"
-          data-doc-search-tag="withAliases: doWithAliases(args: varargs[untyped]): untyped" href="withAliases.html#doWithAliases.t%2Cvarargs%5Buntyped%5D">withAliases: doWithAliases(args: varargs[untyped]): untyped</a></li>
-          </ul></dd>
-<dt><a name="namedWhile" href="#namedWhile"><span>namedWhile:</span></a></dt><dd><ul class="simple">
-<li><a class="reference external"
-          data-doc-search-tag="namedWhile: namedWhile(expr, outerName, innerName, body: untyped): untyped" href="namedWhile.html#namedWhile.m%2Cuntyped%2Cuntyped%2Cuntyped%2Cuntyped">namedWhile: namedWhile(expr, outerName, innerName, body: untyped): untyped</a></li>
-          </ul></dd>
-<dt><a name="waCompileTime" href="#waCompileTime"><span>waCompileTime:</span></a></dt><dd><ul class="simple">
-<li><a class="reference external"
-          data-doc-search-tag="WithAliasesFlag.waCompileTime" href="withAliases.html#waCompileTime">WithAliasesFlag.waCompileTime</a></li>
-          </ul></dd>
-<dt><a name="waSideEffect" href="#waSideEffect"><span>waSideEffect:</span></a></dt><dd><ul class="simple">
-<li><a class="reference external"
-          data-doc-search-tag="WithAliasesFlag.waSideEffect" href="withAliases.html#waSideEffect">WithAliasesFlag.waSideEffect</a></li>
-          </ul></dd>
-<dt><a name="withAliases" href="#withAliases"><span>withAliases:</span></a></dt><dd><ul class="simple">
-<li><a class="reference external"
-          data-doc-search-tag="withAliases: withAliases(flags: static[set[WithAliasesFlag]]; args: varargs[untyped]): untyped" href="withAliases.html#withAliases.m%2Cstatic%5Bset%5BWithAliasesFlag%5D%5D%2Cvarargs%5Buntyped%5D">withAliases: withAliases(flags: static[set[WithAliasesFlag]]; args: varargs[untyped]): untyped</a></li>
-          </ul></dd>
-<dt><a name="WithAliasesFlag" href="#WithAliasesFlag"><span>WithAliasesFlag:</span></a></dt><dd><ul class="simple">
-<li><a class="reference external"
-          data-doc-search-tag="withAliases: WithAliasesFlag" href="withAliases.html#WithAliasesFlag">withAliases: WithAliasesFlag</a></li>
-          </ul></dd>
-</dl>
+    <h1 class="title">src/littlesugar/bitwiseCopy</h1>
+    <div class="row">
+  <div class="three columns">
+  <div class="theme-switch-wrapper">
+    <label class="theme-switch" for="checkbox">
+      <input type="checkbox" id="checkbox" />
+      <div class="slider round"></div>
+    </label>
+    &nbsp;&nbsp;&nbsp; <em>Dark Mode</em>
+  </div>
+  <div id="global-links">
+    <ul class="simple">
+    <li>
+      <a href="theindex.html">Index</a>
+    </li>
+    </ul>
+  </div>
+  <div id="searchInputDiv">
+    Search: <input type="text" id="searchInput"
+      onkeyup="search()" />
+  </div>
+  <div>
+    Group by:
+    <select onchange="groupBy(this.value)">
+      <option value="section">Section</option>
+      <option value="type">Type</option>
+    </select>
+  </div>
+  <ul class="simple simple-toc" id="toc-list">
+<li>
+  <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
+  <ul class="simple simple-toc-section">
+      <ul class="simple nested-toc-section">bitwiseCopy
+      <li><a class="reference" href="#bitwiseCopy%2CT%2CU"
+    title="bitwiseCopy[T, U](dest: var T; source: U)">bitwiseCopy[T, U](dest: var T; source: U)</a></li>
+
+  </ul>
+
+  </ul>
+</li>
+
+</ul>
+
+  </div>
+  
+  <div class="nine columns" id="content">
+  <div id="tocRoot"></div>
+  
+  <p class="module-desc"></p>
+  <div class="section" id="12">
+<h1><a class="toc-backref" href="#12">Procs</a></h1>
+<dl class="item">
+<div id="bitwiseCopy,T,U">
+<dt><pre><span class="Keyword">proc</span> <a href="#bitwiseCopy%2CT%2CU"><span class="Identifier">bitwiseCopy</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">,</span> <span class="Identifier">U</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">dest</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">T</span><span class="Other">;</span> <span class="Identifier">source</span><span class="Other">:</span> <span class="Identifier">U</span><span class="Other">)</span></pre></dt>
+<dd>
+
+<p>Copy the bit pattern of <tt class="docutils literal"><span class="pre"><span class="Identifier">source</span></span></tt> to <tt class="docutils literal"><span class="pre"><span class="Identifier">dest</span></span></tt>.</p>
+<p>Unlike <tt class="docutils literal"><span class="pre"><span class="Keyword">cast</span></span></tt> operator, if sizeof(T) &gt; sizeof(U), it doesn't change bits of <tt class="docutils literal"><span class="pre"><span class="Identifier">dest</span></span></tt> after first sizeof(U) bytes.</p>
+<p>When T or U are <tt class="docutils literal"><span class="pre"><span class="Keyword">ref</span></span></tt>, <tt class="docutils literal"><span class="pre"><span class="Identifier">seq</span></span></tt>, <tt class="docutils literal"><span class="pre"><span class="Identifier">string</span></span></tt> or array/object/tuple type that contains these type, it is compile error.</p>
+
+<p><strong class="examples_text">Example:</strong></p>
+<pre class="listing"><span class="Keyword">var</span>
+  <span class="Identifier">x</span><span class="Punctuation">:</span> <span class="Identifier">float32</span>
+  <span class="Identifier">y</span> <span class="Operator">=</span> <span class="DecNumber">1'i32</span> <span class="Keyword">shl</span> <span class="DecNumber">30'i32</span>
+<span class="Identifier">bitwiseCopy</span><span class="Punctuation">(</span><span class="Identifier">x</span><span class="Punctuation">,</span> <span class="Identifier">y</span><span class="Punctuation">)</span>
+<span class="Identifier">doAssert</span> <span class="Identifier">x</span> <span class="Operator">==</span> <span class="FloatNumber">2.0</span>
+
+<span class="Keyword">var</span>
+  <span class="Identifier">ary</span> <span class="Operator">=</span> <span class="Punctuation">[</span><span class="DecNumber">1</span><span class="Punctuation">,</span> <span class="DecNumber">2</span><span class="Punctuation">,</span> <span class="DecNumber">3</span><span class="Punctuation">]</span>
+  <span class="Identifier">src</span> <span class="Operator">=</span> <span class="DecNumber">100</span>
+<span class="Identifier">bitwiseCopy</span><span class="Punctuation">(</span><span class="Identifier">ary</span><span class="Punctuation">,</span> <span class="Identifier">src</span><span class="Punctuation">)</span>
+<span class="Identifier">doAssert</span> <span class="Identifier">ary</span> <span class="Operator">==</span> <span class="Punctuation">[</span><span class="DecNumber">100</span><span class="Punctuation">,</span> <span class="DecNumber">2</span><span class="Punctuation">,</span> <span class="DecNumber">3</span><span class="Punctuation">]</span></pre>
+
+</dd>
+</div>
+
+</dl></div>
+
+  </div>
+</div>
+
     <div class="row">
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>

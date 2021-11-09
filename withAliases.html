@@ -17,7 +17,7 @@
 <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600' rel='stylesheet' type='text/css'/>
 
 <!-- CSS -->
-<title>withAliases</title>
+<title>src/littlesugar/withAliases</title>
 <link rel="stylesheet" type="text/css" href="nimdoc.out.css">
 
 <script type="text/javascript" src="dochack.js"></script>
@@ -34,7 +34,6 @@ function main() {
     }
   }
 
-  const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
   function switchTheme(e) {
       if (e.target.checked) {
           document.documentElement.setAttribute('data-theme', 'dark');
@@ -45,24 +44,32 @@ function main() {
       }
   }
 
-  toggleSwitch.addEventListener('change', switchTheme, false);
+  const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+  if (toggleSwitch !== null) {
+    toggleSwitch.addEventListener('change', switchTheme, false);
+  }
 
-  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+  var currentTheme = localStorage.getItem('theme');
+  if (!currentTheme && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    currentTheme = 'dark';
+  }
   if (currentTheme) {
     document.documentElement.setAttribute('data-theme', currentTheme);
 
-    if (currentTheme === 'dark') {
+    if (currentTheme === 'dark' && toggleSwitch !== null) {
       toggleSwitch.checked = true;
     }
   }
 }
+
+window.addEventListener('DOMContentLoaded', main);
 </script>
 
 </head>
-<body onload="main()">
+<body>
 <div class="document" id="documentId">
   <div class="container">
-    <h1 class="title">withAliases</h1>
+    <h1 class="title">src/littlesugar/withAliases</h1>
     <div class="row">
   <div class="three columns">
   <div class="theme-switch-wrapper">
@@ -103,16 +110,22 @@ function main() {
 <li>
   <a class="reference reference-toplevel" href="#17" id="67">Macros</a>
   <ul class="simple simple-toc-section">
+      <ul class="simple nested-toc-section">withAliases
       <li><a class="reference" href="#withAliases.m%2Cstatic%5Bset%5BWithAliasesFlag%5D%5D%2Cvarargs%5Buntyped%5D"
-    title="withAliases(flags: static[set[WithAliasesFlag]]; args: varargs[untyped]): untyped">withAliases</a></li>
+    title="withAliases(flags: static[set[WithAliasesFlag]]; args: varargs[untyped]): untyped">withAliases(flags: static[set[WithAliasesFlag]]; args: varargs[untyped]): untyped</a></li>
+
+  </ul>
 
   </ul>
 </li>
 <li>
   <a class="reference reference-toplevel" href="#18" id="68">Templates</a>
   <ul class="simple simple-toc-section">
+      <ul class="simple nested-toc-section">doWithAliases
       <li><a class="reference" href="#doWithAliases.t%2Cvarargs%5Buntyped%5D"
-    title="doWithAliases(args: varargs[untyped]): untyped">doWithAliases</a></li>
+    title="doWithAliases(args: varargs[untyped]): untyped">doWithAliases(args: varargs[untyped]): untyped</a></li>
+
+  </ul>
 
   </ul>
 </li>
@@ -120,6 +133,7 @@ function main() {
 </ul>
 
   </div>
+  
   <div class="nine columns" id="content">
   <div id="tocRoot"></div>
   
@@ -127,7 +141,7 @@ function main() {
   <div class="section" id="7">
 <h1><a class="toc-backref" href="#7">Types</a></h1>
 <dl class="item">
-<a id="WithAliasesFlag"></a>
+<div id="WithAliasesFlag">
 <dt><pre><a href="withAliases.html#WithAliasesFlag"><span class="Identifier">WithAliasesFlag</span></a> <span class="Other">=</span> <span class="Keyword">enum</span>
   <span class="Identifier">waSideEffect</span><span class="Other">,</span> <span class="Identifier">waCompileTime</span></pre></dt>
 <dd>
@@ -135,12 +149,13 @@ function main() {
 
 
 </dd>
+</div>
 
 </dl></div>
 <div class="section" id="17">
 <h1><a class="toc-backref" href="#17">Macros</a></h1>
 <dl class="item">
-<a id="withAliases.m,static[set[WithAliasesFlag]],varargs[untyped]"></a>
+<div id="withAliases.m,static[set[WithAliasesFlag]],varargs[untyped]">
 <dt><pre><span class="Keyword">macro</span> <a href="#withAliases.m%2Cstatic%5Bset%5BWithAliasesFlag%5D%5D%2Cvarargs%5Buntyped%5D"><span class="Identifier">withAliases</span></a><span class="Other">(</span><span class="Identifier">flags</span><span class="Other">:</span> <span class="Identifier">static</span><span class="Other">[</span><span class="Identifier">set</span><span class="Other">[</span><a href="withAliases.html#WithAliasesFlag"><span class="Identifier">WithAliasesFlag</span></a><span class="Other">]</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">args</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">untyped</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
 <dd>
 
@@ -149,14 +164,14 @@ function main() {
 <p>You can still declare both an alias of a seq and an alias of the element of that seq at same time and modify them without generating compile errors. But you can find such error easily by checking arguments. When Nim implements &quot;Aliasing restrictions in parameter passing&quot;, that should become compile error. See: <a class="reference external" href="https://nim-lang.org/docs/manual_experimental.html#aliasing-restrictions-in-parameter-passing">https://nim-lang.org/docs/manual_experimental.html#aliasing-restrictions-in-parameter-passing</a></p>
 <p>You can declare aliases in 3 ways.</p>
 <ul class="simple"><li>Specify identifier as is It creates immutable alias with same name.</li>
-<li>aliasname = expression It creates immutable alias with name specified in left side of <tt class="docutils literal"><span class="pre">=</span></tt> operator.</li>
+<li>aliasname = expression It creates immutable alias with name specified in left side of <tt class="docutils literal"><span class="pre"><span class="Operator">=</span></span></tt> operator.</li>
 <li>aliasname from expression It creates mutable alias with specified name</li>
 </ul>
 <p>You can also declare small function that can be used as alias of function/procedure.</p>
-<p>When <tt class="docutils literal"><span class="pre">flags</span></tt> is empty, making side effects in statements under <tt class="docutils literal"><span class="pre">withAliases</span></tt> is compile error like <tt class="docutils literal"><span class="pre">func</span></tt>. When <tt class="docutils literal"><span class="pre">waSideEffect</span></tt> is set to <tt class="docutils literal"><span class="pre">flags</span></tt>, making side effects is not compile error. When <tt class="docutils literal"><span class="pre">waCompileTime</span></tt> is set to <tt class="docutils literal"><span class="pre">flags</span></tt>, statements under <tt class="docutils literal"><span class="pre">withAliases</span></tt> are executed at compile time.</p>
+<p>When <tt class="docutils literal"><span class="pre"><span class="Identifier">flags</span></span></tt> is empty, making side effects in statements under <tt class="docutils literal"><span class="pre"><span class="Identifier">withAliases</span></span></tt> is compile error like <tt class="docutils literal"><span class="pre"><span class="Keyword">func</span></span></tt>. When <tt class="docutils literal"><span class="pre"><span class="Identifier">waSideEffect</span></span></tt> is set to <tt class="docutils literal"><span class="pre"><span class="Identifier">flags</span></span></tt>, making side effects is not compile error. When <tt class="docutils literal"><span class="pre"><span class="Identifier">waCompileTime</span></span></tt> is set to <tt class="docutils literal"><span class="pre"><span class="Identifier">flags</span></span></tt>, statements under <tt class="docutils literal"><span class="pre"><span class="Identifier">withAliases</span></span></tt> are executed at compile time.</p>
 <dl class="docutils"><dt>Restrictions:</dt>
-<dd><ul class="simple"><li>You cannot use break or continue for a loop/block outside of <tt class="docutils literal"><span class="pre">withAliases</span></tt></li>
-<li>Return statements within <tt class="docutils literal"><span class="pre">withAliases</span></tt> block does not exit from a outside proc. It exits from <tt class="docutils literal"><span class="pre">withAliases</span></tt> block and returned value become value of <tt class="docutils literal"><span class="pre">withAliases</span></tt>.</li>
+<dd><ul class="simple"><li>You cannot use break or continue for a loop/block outside of <tt class="docutils literal"><span class="pre"><span class="Identifier">withAliases</span></span></tt></li>
+<li>Return statements within <tt class="docutils literal"><span class="pre"><span class="Identifier">withAliases</span></span></tt> block does not exit from a outside proc. It exits from <tt class="docutils literal"><span class="pre"><span class="Identifier">withAliases</span></span></tt> block and returned value become value of <tt class="docutils literal"><span class="pre"><span class="Identifier">withAliases</span></span></tt>.</li>
 </ul>
 </dd>
 </dl>
@@ -189,32 +204,34 @@ function main() {
 <span class="Keyword">let</span> <span class="Identifier">r</span> <span class="Operator">=</span> <span class="Identifier">genSym1234</span><span class="Punctuation">(</span><span class="Identifier">a</span><span class="Punctuation">,</span> <span class="Identifier">b</span><span class="Punctuation">[</span><span class="DecNumber">0</span><span class="Punctuation">]</span><span class="Punctuation">,</span> <span class="Identifier">b</span><span class="Punctuation">[</span><span class="DecNumber">1</span><span class="Punctuation">]</span><span class="Punctuation">)</span>
 <span class="Identifier">doAssert</span> <span class="Identifier">r</span> <span class="Operator">==</span> <span class="DecNumber">6</span></pre>
 <p><strong class="examples_text">Example:</strong></p>
-<pre class="listing"><span class="Keyword">let</span><span class="Whitespace">
-  </span><span class="Identifier">foo</span><span class="Whitespace"> </span><span class="Operator">=</span><span class="Whitespace"> </span><span class="DecNumber">1</span><span class="Whitespace">
-  </span><span class="Identifier">bar</span><span class="Whitespace"> </span><span class="Operator">=</span><span class="Whitespace"> </span><span class="DecNumber">2</span><span class="Whitespace">
-</span><span class="Keyword">let</span><span class="Whitespace">  </span><span class="Identifier">a</span><span class="Whitespace"> </span><span class="Operator">=</span><span class="Whitespace"> </span><span class="Identifier">withAliases</span><span class="Punctuation">(</span><span class="Punctuation">{</span><span class="Punctuation">}</span><span class="Punctuation">,</span><span class="Whitespace"> </span><span class="Identifier">x</span><span class="Whitespace"> </span><span class="Operator">=</span><span class="Whitespace"> </span><span class="Identifier">foo</span><span class="Punctuation">,</span><span class="Whitespace"> </span><span class="Identifier">bar</span><span class="Punctuation">)</span><span class="Punctuation">:</span><span class="Whitespace">
-  </span><span class="Identifier">x</span><span class="Whitespace"> </span><span class="Operator">+</span><span class="Whitespace"> </span><span class="Identifier">bar</span><span class="Whitespace">
-</span><span class="Identifier">doAssert</span><span class="Whitespace"> </span><span class="Identifier">a</span><span class="Whitespace"> </span><span class="Operator">==</span><span class="Whitespace"> </span><span class="DecNumber">3</span><span class="Whitespace">
+<pre class="listing"><span class="Keyword">let</span>
+  <span class="Identifier">foo</span> <span class="Operator">=</span> <span class="DecNumber">1</span>
+  <span class="Identifier">bar</span> <span class="Operator">=</span> <span class="DecNumber">2</span>
+<span class="Keyword">let</span>  <span class="Identifier">a</span> <span class="Operator">=</span> <span class="Identifier">withAliases</span><span class="Punctuation">(</span><span class="Punctuation">{</span><span class="Punctuation">}</span><span class="Punctuation">,</span> <span class="Identifier">x</span> <span class="Operator">=</span> <span class="Identifier">foo</span><span class="Punctuation">,</span> <span class="Identifier">bar</span><span class="Punctuation">)</span><span class="Punctuation">:</span>
+  <span class="Identifier">x</span> <span class="Operator">+</span> <span class="Identifier">bar</span>
+<span class="Identifier">doAssert</span> <span class="Identifier">a</span> <span class="Operator">==</span> <span class="DecNumber">3</span>
 
-</span><span class="Keyword">var</span><span class="Whitespace"> </span><span class="Identifier">b</span><span class="Whitespace"> </span><span class="Operator">=</span><span class="Whitespace"> </span><span class="Punctuation">[</span><span class="Punctuation">(</span><span class="Identifier">n</span><span class="Punctuation">:</span><span class="Whitespace"> </span><span class="DecNumber">1</span><span class="Punctuation">,</span><span class="Whitespace"> </span><span class="Identifier">s</span><span class="Punctuation">:</span><span class="Whitespace"> </span><span class="StringLit">&quot;aaa&quot;</span><span class="Punctuation">)</span><span class="Punctuation">,</span><span class="Whitespace"> </span><span class="Punctuation">(</span><span class="Identifier">n</span><span class="Punctuation">:</span><span class="Whitespace"> </span><span class="DecNumber">2</span><span class="Punctuation">,</span><span class="Whitespace"> </span><span class="Identifier">s</span><span class="Punctuation">:</span><span class="Whitespace"> </span><span class="StringLit">&quot;b&quot;</span><span class="Punctuation">)</span><span class="Punctuation">]</span><span class="Whitespace">
-</span><span class="Identifier">withAliases</span><span class="Punctuation">(</span><span class="Punctuation">{</span><span class="Identifier">waSideEffect</span><span class="Punctuation">}</span><span class="Punctuation">,</span><span class="Whitespace"> </span><span class="Identifier">x</span><span class="Whitespace"> </span><span class="Keyword">from</span><span class="Whitespace"> </span><span class="Identifier">b</span><span class="Punctuation">[</span><span class="DecNumber">0</span><span class="Punctuation">]</span><span class="Operator">.</span><span class="Identifier">n</span><span class="Punctuation">,</span><span class="Whitespace"> </span><span class="Identifier">y</span><span class="Whitespace"> </span><span class="Operator">=</span><span class="Whitespace"> </span><span class="Identifier">b</span><span class="Punctuation">[</span><span class="DecNumber">0</span><span class="Punctuation">]</span><span class="Operator">.</span><span class="Identifier">s</span><span class="Punctuation">,</span><span class="Whitespace"> </span><span class="Identifier">z</span><span class="Whitespace"> </span><span class="Keyword">from</span><span class="Whitespace"> </span><span class="Identifier">b</span><span class="Punctuation">[</span><span class="DecNumber">1</span><span class="Punctuation">]</span><span class="Punctuation">)</span><span class="Punctuation">:</span><span class="Whitespace">
-  </span><span class="Identifier">x</span><span class="Whitespace"> </span><span class="Operator">+=</span><span class="Whitespace"> </span><span class="Identifier">y</span><span class="Operator">.</span><span class="Identifier">len</span><span class="Whitespace">
-  </span><span class="Identifier">z</span><span class="Operator">.</span><span class="Identifier">s</span><span class="Whitespace"> </span><span class="Operator">&amp;=</span><span class="Whitespace"> </span><span class="Operator">$</span><span class="Identifier">z</span><span class="Operator">.</span><span class="Identifier">n</span><span class="Whitespace">
-</span><span class="Identifier">doAssert</span><span class="Whitespace"> </span><span class="Identifier">b</span><span class="Whitespace"> </span><span class="Operator">==</span><span class="Whitespace"> </span><span class="Punctuation">[</span><span class="Punctuation">(</span><span class="Identifier">n</span><span class="Punctuation">:</span><span class="Whitespace"> </span><span class="DecNumber">4</span><span class="Punctuation">,</span><span class="Whitespace"> </span><span class="Identifier">s</span><span class="Punctuation">:</span><span class="Whitespace"> </span><span class="StringLit">&quot;aaa&quot;</span><span class="Punctuation">)</span><span class="Punctuation">,</span><span class="Whitespace"> </span><span class="Punctuation">(</span><span class="Identifier">n</span><span class="Punctuation">:</span><span class="Whitespace"> </span><span class="DecNumber">2</span><span class="Punctuation">,</span><span class="Whitespace"> </span><span class="Identifier">s</span><span class="Punctuation">:</span><span class="Whitespace"> </span><span class="StringLit">&quot;b2&quot;</span><span class="Punctuation">)</span><span class="Punctuation">]</span></pre>
+<span class="Keyword">var</span> <span class="Identifier">b</span> <span class="Operator">=</span> <span class="Punctuation">[</span><span class="Punctuation">(</span><span class="Identifier">n</span><span class="Punctuation">:</span> <span class="DecNumber">1</span><span class="Punctuation">,</span> <span class="Identifier">s</span><span class="Punctuation">:</span> <span class="StringLit">&quot;aaa&quot;</span><span class="Punctuation">)</span><span class="Punctuation">,</span> <span class="Punctuation">(</span><span class="Identifier">n</span><span class="Punctuation">:</span> <span class="DecNumber">2</span><span class="Punctuation">,</span> <span class="Identifier">s</span><span class="Punctuation">:</span> <span class="StringLit">&quot;b&quot;</span><span class="Punctuation">)</span><span class="Punctuation">]</span>
+<span class="Identifier">withAliases</span><span class="Punctuation">(</span><span class="Punctuation">{</span><span class="Identifier">waSideEffect</span><span class="Punctuation">}</span><span class="Punctuation">,</span> <span class="Identifier">x</span> <span class="Keyword">from</span> <span class="Identifier">b</span><span class="Punctuation">[</span><span class="DecNumber">0</span><span class="Punctuation">]</span><span class="Operator">.</span><span class="Identifier">n</span><span class="Punctuation">,</span> <span class="Identifier">y</span> <span class="Operator">=</span> <span class="Identifier">b</span><span class="Punctuation">[</span><span class="DecNumber">0</span><span class="Punctuation">]</span><span class="Operator">.</span><span class="Identifier">s</span><span class="Punctuation">,</span> <span class="Identifier">z</span> <span class="Keyword">from</span> <span class="Identifier">b</span><span class="Punctuation">[</span><span class="DecNumber">1</span><span class="Punctuation">]</span><span class="Punctuation">)</span><span class="Punctuation">:</span>
+  <span class="Identifier">x</span> <span class="Operator">+=</span> <span class="Identifier">y</span><span class="Operator">.</span><span class="Identifier">len</span>
+  <span class="Identifier">z</span><span class="Operator">.</span><span class="Identifier">s</span> <span class="Operator">&amp;=</span> <span class="Operator">$</span><span class="Identifier">z</span><span class="Operator">.</span><span class="Identifier">n</span>
+<span class="Identifier">doAssert</span> <span class="Identifier">b</span> <span class="Operator">==</span> <span class="Punctuation">[</span><span class="Punctuation">(</span><span class="Identifier">n</span><span class="Punctuation">:</span> <span class="DecNumber">4</span><span class="Punctuation">,</span> <span class="Identifier">s</span><span class="Punctuation">:</span> <span class="StringLit">&quot;aaa&quot;</span><span class="Punctuation">)</span><span class="Punctuation">,</span> <span class="Punctuation">(</span><span class="Identifier">n</span><span class="Punctuation">:</span> <span class="DecNumber">2</span><span class="Punctuation">,</span> <span class="Identifier">s</span><span class="Punctuation">:</span> <span class="StringLit">&quot;b2&quot;</span><span class="Punctuation">)</span><span class="Punctuation">]</span></pre>
 
 </dd>
+</div>
 
 </dl></div>
 <div class="section" id="18">
 <h1><a class="toc-backref" href="#18">Templates</a></h1>
 <dl class="item">
-<a id="doWithAliases.t,varargs[untyped]"></a>
+<div id="doWithAliases.t,varargs[untyped]">
 <dt><pre><span class="Keyword">template</span> <a href="#doWithAliases.t%2Cvarargs%5Buntyped%5D"><span class="Identifier">doWithAliases</span></a><span class="Other">(</span><span class="Identifier">args</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">untyped</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
 <dd>
 
-Same to <tt class="docutils literal"><span class="pre">withAliases({waSideEffect}, ...)</span></tt>
+Same to <tt class="docutils literal"><span class="pre"><span class="Identifier">withAliases</span><span class="Punctuation">(</span><span class="Punctuation">{</span><span class="Identifier">waSideEffect</span><span class="Punctuation">}</span><span class="Punctuation">,</span> <span class="Operator">...</span><span class="Punctuation">)</span></span></tt>
 
 </dd>
+</div>
 
 </dl></div>
 
@@ -225,7 +242,7 @@ Same to <tt class="docutils literal"><span class="pre">withAliases({waSideEffect
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2021-02-01 11:41:14 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2021-11-09 14:16:00 UTC</small>
       </div>
     </div>
   </div>
