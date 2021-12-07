@@ -29,32 +29,47 @@ proc bitwiseCopy*[T, U](dest: var T, source: U) =
 
   copyMem(addr dest, unsafeAddr source, min(sizeof(T), sizeof(U)))
 
+proc bitwiseCast*[T](source: auto): T =
+  ## Same to `cast` in Nim but slightly safer.
+  ##
+  ## Unlike `cast` operator, if sizeof(T) > sizeof(source),
+  ## all bits in return value after first sizeof(source) bytes are 0.
+  runnableExamples:
+    doAssert bitwiseCast[float32](1'i32 shl 30'i32) == 2.0
+    doAssert bitwiseCast[array[3, int]](100) == [100, 0, 0]
+
+  bitwiseCopy(result, source)
+
 when isMainModule:
   proc main =
-    proc testSameTypeAndValue(a: auto) =
-      var d: typeof(a)
-      bitwiseCopy(d, a)
-      doAssert d == a
+    template testSameTypes(testSameTypeAndValue: proc): untyped =
+      proc testSameType(T: typedesc[SomeNumber]) =
+        testSameTypeAndValue(T.low)
+        testSameTypeAndValue(T.low + T(1))
+        when T is SomeSignedInt:
+          testSameTypeAndValue(T(-1))
+        testSameTypeAndValue(T(0))
+        testSameTypeAndValue(T(1))
+        testSameTypeAndValue(T.high - T(1))
 
-    proc testSameType(T: typedesc[SomeNumber]) =
-      testSameTypeAndValue(T.low)
-      testSameTypeAndValue(T.low + T(1))
-      when T is SomeSignedInt:
-        testSameTypeAndValue(T(-1))
-      testSameTypeAndValue(T(0))
-      testSameTypeAndValue(T(1))
-      testSameTypeAndValue(T.high - T(1))
+      testSameType(int8)
+      testSameType(uint8)
+      testSameType(int16)
+      testSameType(uint16)
+      testSameType(int32)
+      testSameType(uint32)
+      testSameType(int64)
+      testSameType(uint64)
+      testSameType(float32)
+      testSameType(float)
 
-    testSameType(int8)
-    testSameType(uint8)
-    testSameType(int16)
-    testSameType(uint16)
-    testSameType(int32)
-    testSameType(uint32)
-    testSameType(int64)
-    testSameType(uint64)
-    testSameType(float32)
-    testSameType(float)
+    block:
+      proc testSameTypeAndValue(a: auto) =
+        var d: typeof(a)
+        bitwiseCopy(d, a)
+        doAssert d == a
+
+      testSameTypes(testSameTypeAndValue)
 
     block:
       var
@@ -173,5 +188,88 @@ when isMainModule:
         doAssert not compiles(bitwiseCopy(s, 1))
         doAssert not compiles(bitwiseCopy(x, s))
         doAssert not compiles(bitwiseCopy(str, 1))
+
+    # Test bitwiseCast[T, U](source: U)
+    block:
+      proc testSameTypeAndValue(a: auto) =
+        doAssert bitwiseCast[typeof(a)](a) == a
+
+      testSameTypes(testSameTypeAndValue)
+
+    block:
+      let
+        x = 0x10203040'i32
+        y = bitwiseCast[int16](x)
+      when cpuEndian == littleEndian:
+        doAssert y == 0x3040'i16
+      else:
+        doAssert y == 0x1020'i16
+
+    block:
+      let
+        x = 0x5566'i16
+        y = bitwiseCast[int32](x)
+      when cpuEndian == littleEndian:
+        doAssert y == 0x5566'i32
+      else:
+        doAssert y == 0x55660000'i32
+
+    block:
+      let
+        x = 0x10203040'u32
+        y = bitwiseCast[uint8](x)
+      when cpuEndian == littleEndian:
+        doAssert y == 0x40'u8     
+      else:
+        doAssert y == 0x10'u8
+
+    block:
+      let
+        x = 0xff'u8
+        y = bitwiseCast[uint64](x)
+      when cpuEndian == littleEndian:
+        doAssert y == 0xff'u64
+      else:
+        doAssert y == 0xff00_0000_0000_0000'u64
+
+    block:
+      type
+        Obj1 = object
+          x: int
+
+        Obj2 = object
+          x: int
+          y: int
+
+      let
+        x = Obj1(x: 11)
+        y = bitwiseCast[Obj2](x)
+      doAssert y == Obj2(x: 11, y: 0)
+
+      let
+        x2 = Obj2(x: 3, y: 7)
+        y2 = bitwiseCast[Obj1](x2)
+      doAssert y2 == Obj1(x: 3)
+
+    block:
+      let
+        x = [1, 2, 3]
+        y1 = bitwiseCast[array[1, int]](x)
+        y2 = bitwiseCast[array[2, int]](x)
+        y3 = bitwiseCast[array[3, int]](x)
+        y4 = bitwiseCast[array[4, int]](x)
+      doAssert y1 == [1]
+      doAssert y2 == [1, 2]
+      doAssert y3 == [1, 2, 3]
+      doAssert y4 == [1, 2, 3, 0]
+
+    block:
+      let
+        x = 2.0'f64
+        y = bitwiseCast[int64](x)
+      doAssert y == 1'i64 shl 62'i64
+
+      let z = bitwiseCast[float64](y)
+      doAssert z == x
 
   main()
