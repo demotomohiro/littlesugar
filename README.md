@@ -10,3 +10,5 @@ Creates a while statement with named blocks so that you can easily leave or cont
 ### [withAliases](https://demotomohiro.github.io/littlesugar/withAliases.html)
 Creates a new scope with aliases so that you can use them safely.
 
+### [bitwiseCopy](https://demotomohiro.github.io/littlesugar/bitwiseCopy.html)
+It provides procedures work like `cast` in Nim, but slightly safer.
