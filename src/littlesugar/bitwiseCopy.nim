@@ -1,3 +1,5 @@
+import std/typetraits
+
 proc bitwiseCopy*[T, U](dest: var T, source: U) =
   ## Copy the bit pattern of `source` to `dest`.
   ##
@@ -18,13 +20,9 @@ proc bitwiseCopy*[T, U](dest: var T, source: U) =
     bitwiseCopy(ary, src)
     doAssert ary == [100, 2, 3]
 
-  # There is a proc or macro that checks if given type can be safely bit wise copied.
-  # But I forget where it is :(
-  # This type check is not good enough.
-  type Uncopyable = ref or seq or string
-  when T is Uncopyable:
+  when not supportsCopyMem(T):
     {.fatal: "Overwriting " & $T & " is unsafe.".}
-  when U is Uncopyable:
+  when not supportsCopyMem(U):
     {.fatal: "Bitwise copying " & $U & " is unsafe.".}
 
   copyMem(addr dest, unsafeAddr source, min(sizeof(T), sizeof(U)))
