@@ -1,7 +1,7 @@
 import std/macros
 
 proc replace*(node, target, dest: NimNode): NimNode =
-  ## Recursively replaces all `NimNode` trees in `node` that matches `target` with `dest`.
+  ## Recursively replaces all `NimNode`subtrees in `node` that matches `target` with `dest`.
   runnableExamples:
     macro foo(target, dest, body: untyped): untyped =
       replace(body, target, dest)
