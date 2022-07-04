@@ -125,7 +125,7 @@ window.addEventListener('DOMContentLoaded', main);
 <dt><pre><span class="Keyword">proc</span> <a href="#replace%2CNimNode%2CNimNode%2CNimNode"><span class="Identifier">replace</span></a><span class="Other">(</span><span class="Identifier">node</span><span class="Other">,</span> <span class="Identifier">target</span><span class="Other">,</span> <span class="Identifier">dest</span><span class="Other">:</span> <span class="Identifier">NimNode</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">NimNode</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Recursively replaces all <tt class="docutils literal"><span class="pre"><span class="Identifier">NimNode</span></span></tt> trees in <tt class="docutils literal"><span class="pre"><span class="Identifier">node</span></span></tt> that matches <tt class="docutils literal"><span class="pre"><span class="Identifier">target</span></span></tt> with <tt class="docutils literal"><span class="pre"><span class="Identifier">dest</span></span></tt>.
+Recursively replaces all <tt class="docutils literal"><span class="pre"><span class="Identifier">NimNode</span></span></tt>subtrees in <tt class="docutils literal"><span class="pre"><span class="Identifier">node</span></span></tt> that matches <tt class="docutils literal"><span class="pre"><span class="Identifier">target</span></span></tt> with <tt class="docutils literal"><span class="pre"><span class="Identifier">dest</span></span></tt>.
 <p><strong class="examples_text">Example:</strong></p>
 <pre class="listing"><span class="Keyword">macro</span> <span class="Identifier">foo</span><span class="Punctuation">(</span><span class="Identifier">target</span><span class="Punctuation">,</span> <span class="Identifier">dest</span><span class="Punctuation">,</span> <span class="Identifier">body</span><span class="Punctuation">:</span> <span class="Identifier">untyped</span><span class="Punctuation">)</span><span class="Punctuation">:</span> <span class="Identifier">untyped</span> <span class="Operator">=</span>
   <span class="Identifier">replace</span><span class="Punctuation">(</span><span class="Identifier">body</span><span class="Punctuation">,</span> <span class="Identifier">target</span><span class="Punctuation">,</span> <span class="Identifier">dest</span><span class="Punctuation">)</span>
@@ -144,7 +144,7 @@ Recursively replaces all <tt class="docutils literal"><span class="pre"><span cl
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2022-07-02 14:58:07 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2022-07-04 07:25:05 UTC</small>
       </div>
     </div>
   </div>
