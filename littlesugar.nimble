@@ -16,10 +16,12 @@ task test, "Run tests":
   selfExec "c -r src/littlesugar/withAliases.nim"
   selfExec "c -r src/littlesugar/bitwiseCopy.nim"
   selfExec "c -r src/littlesugar/replaceNimNodeTree.nim"
+  selfExec "c -r src/littlesugar/expandFirst.nim"
 
 task docgen, "Generate html documents":
   selfExec "doc --outdir:htmldocs --index:on src/littlesugar/namedWhile.nim"
   selfExec "doc --outdir:htmldocs --index:on src/littlesugar/withAliases.nim"
   selfExec "doc --outdir:htmldocs --index:on src/littlesugar/bitwiseCopy.nim"
   selfExec "doc --outdir:htmldocs --index:on src/littlesugar/replaceNimNodeTree.nim"
+  selfExec "doc --outdir:htmldocs --index:on src/littlesugar/expandFirst.nim"
   selfExec "buildIndex -o:htmldocs/theindex.html htmldocs"

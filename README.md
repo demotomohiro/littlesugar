@@ -15,3 +15,6 @@ It provides procedures work like `cast` in Nim, but slightly safer.
 
 ### [replaceNimNodeTree](https://demotomohiro.github.io/littlesugar/replaceNimNodeTree.html)
 Recursively replaces all `NimNode` subtrees that matches given `NimNode` tree with specified `NimNode` tree.
+
+### [expandFirst](https://demotomohiro.github.io/littlesugar/expandFirst.html)
+Expand specified macro or template before expanding other macros or templates.
