@@ -1,0 +1,1 @@
+setLambda	setLambda.html#setLambda.m,proc,untyped	setLambda: setLambda(procVar: var proc; body: untyped): untyped	
