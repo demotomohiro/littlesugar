@@ -18,3 +18,6 @@ Recursively replaces all `NimNode` subtrees that matches given `NimNode` tree wi
 
 ### [expandFirst](https://demotomohiro.github.io/littlesugar/expandFirst.html)
 Expand specified macro or template before expanding other macros or templates.
+
+### [setLambda](https://demotomohiro.github.io/littlesugar/setLambda.html)
+Assign an anonymous procedure to a procedual type variable easily.
