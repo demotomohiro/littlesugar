@@ -21,3 +21,6 @@ Expand specified macro or template before expanding other macros or templates.
 
 ### [setLambda](https://demotomohiro.github.io/littlesugar/setLambda.html)
 Assign an anonymous procedure to a procedual type variable easily.
+
+### [staticDeque](https://demotomohiro.github.io/littlesugar/staticDeque.html)
+This is similar to std/deques, but has fixed size storage.
