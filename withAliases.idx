@@ -1,5 +1,6 @@
-waSideEffect	withAliases.html#waSideEffect	WithAliasesFlag.waSideEffect	
-waCompileTime	withAliases.html#waCompileTime	WithAliasesFlag.waCompileTime	
-WithAliasesFlag	withAliases.html#WithAliasesFlag	withAliases: WithAliasesFlag	
-withAliases	withAliases.html#withAliases.m,static[set[WithAliasesFlag]],varargs[untyped]	withAliases: withAliases(flags: static[set[WithAliasesFlag]]; args: varargs[untyped]): untyped	
-doWithAliases	withAliases.html#doWithAliases.t,varargs[untyped]	withAliases: doWithAliases(args: varargs[untyped]): untyped	
+nimTitle	withAliases	withAliases.html	module src/littlesugar/withAliases		0
+nim	waSideEffect	withAliases.html#waSideEffect	WithAliasesFlag.waSideEffect		4
+nim	waCompileTime	withAliases.html#waCompileTime	WithAliasesFlag.waCompileTime		4
+nim	WithAliasesFlag	withAliases.html#WithAliasesFlag	enum WithAliasesFlag		4
+nim	withAliases	withAliases.html#withAliases.m,static[set[WithAliasesFlag]],varargs[untyped]	macro withAliases(flags: static[set[WithAliasesFlag]]; args: varargs[untyped]): untyped		8
+nim	doWithAliases	withAliases.html#doWithAliases.t,varargs[untyped]	template doWithAliases(args: varargs[untyped]): untyped		158

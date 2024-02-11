@@ -1,2 +1,3 @@
-bitwiseCopy	bitwiseCopy.html#bitwiseCopy,T,U	bitwiseCopy: bitwiseCopy[T, U](dest: var T; source: U)	
-bitwiseCast	bitwiseCopy.html#bitwiseCast,auto	bitwiseCopy: bitwiseCast[T](source: auto): T	
+nimTitle	bitwiseCopy	bitwiseCopy.html	module src/littlesugar/bitwiseCopy		0
+nim	bitwiseCopy	bitwiseCopy.html#bitwiseCopy,T,U	proc bitwiseCopy[T, U](dest: var T; source: U)		3
+nim	bitwiseCast	bitwiseCopy.html#bitwiseCast,auto	proc bitwiseCast[T](source: auto): T		30

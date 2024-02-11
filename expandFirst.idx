@@ -1,1 +1,2 @@
-expandFirst	expandFirst.html#expandFirst.t,untyped,untyped	expandFirst: expandFirst(macroOrTemplateCall, body: untyped): untyped	
+nimTitle	expandFirst	expandFirst.html	module src/littlesugar/expandFirst		0
+nim	expandFirst	expandFirst.html#expandFirst.t,untyped,untyped	template expandFirst(macroOrTemplateCall, body: untyped): untyped		4

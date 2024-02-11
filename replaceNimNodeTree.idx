@@ -1,1 +1,2 @@
-replace	replaceNimNodeTree.html#replace,NimNode,NimNode,NimNode	replaceNimNodeTree: replace(node, target, dest: NimNode): NimNode	
+nimTitle	replaceNimNodeTree	replaceNimNodeTree.html	module src/littlesugar/replaceNimNodeTree		0
+nim	replace	replaceNimNodeTree.html#replace,NimNode,NimNode,NimNode	proc replace(node, target, dest: NimNode): NimNode		3

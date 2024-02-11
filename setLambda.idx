@@ -1,1 +1,2 @@
-setLambda	setLambda.html#setLambda.m,proc,untyped	setLambda: setLambda(procVar: var proc; body: untyped): untyped	
+nimTitle	setLambda	setLambda.html	module src/littlesugar/setLambda		0
+nim	setLambda	setLambda.html#setLambda.m,proc,untyped	macro setLambda(procVar: var proc; body: untyped): untyped		10

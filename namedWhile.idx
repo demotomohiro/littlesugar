@@ -1,1 +1,2 @@
-namedWhile	namedWhile.html#namedWhile.m,untyped,untyped,untyped,untyped	namedWhile: namedWhile(expr, outerName, innerName, body: untyped): untyped	
+nimTitle	namedWhile	namedWhile.html	module src/littlesugar/namedWhile		0
+nim	namedWhile	namedWhile.html#namedWhile.m,untyped,untyped,untyped,untyped	macro namedWhile(expr, outerName, innerName, body: untyped): untyped		3
