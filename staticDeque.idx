@@ -1,0 +1,7 @@
+nimTitle	staticDeque	staticDeque.html	module src/littlesugar/staticDeque		0
+nim	StaticDeque	staticDeque.html#StaticDeque	object StaticDeque		20
+nim	high	staticDeque.html#high,StaticDeque	proc high(x: StaticDeque): int		27
+nim	len	staticDeque.html#len,StaticDeque	proc len(x: StaticDeque): int		30
+nim	isFull	staticDeque.html#isFull,StaticDeque	proc isFull(x: StaticDeque): bool		33
+nim	addLast	staticDeque.html#addLast,StaticDeque,sink	proc addLast(x: var StaticDeque; item: sink x.T)		36
+nim	popFirst	staticDeque.html#popFirst,StaticDeque	proc popFirst(x: var StaticDeque): x.T		41
