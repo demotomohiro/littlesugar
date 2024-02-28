@@ -33,15 +33,54 @@ func len*(x: StaticDeque): int =
 func isFull*(x: StaticDeque): bool =
   x.len == x.buf.len
 
+func mask(x: StaticDeque): auto {.inline.} =
+  minimumSizeUint(x.N)(x.buf.high)
+
 proc addLast*(x: var StaticDeque; item: sink x.T) =
   assert not x.isFull
-  x.buf[x.tail.int and x.buf.high] = item
+  x.buf[x.tail and x.mask] = item
   inc x.tail
 
 proc popFirst*(x: var StaticDeque): x.T {.inline, discardable.} =
   assert x.head != x.tail
-  result = x.buf[x.head.int and x.buf.high]
+  result = x.buf[x.head and x.mask]
   inc x.head
+
+template xBoundsCheck(deq, i) =
+  # Bounds check for the array like accesses.
+  when compileOption("boundChecks"):
+    if unlikely(i >= deq.len): # x < deq.low is taken care by the Natural parameter
+      raise newException(IndexDefect,
+                         "Out of bounds: " & $i & " > " & $(deq.len - 1))
+    if unlikely(i < 0): # when used with BackwardsIndex
+      raise newException(IndexDefect,
+                         "Out of bounds: " & $i & " < 0")
+
+proc `[]`*(x: StaticDeque; i: Natural): lent x.T {.inline.} =
+  ## Accesses the `i`-th element of `deq`.
+  runnableExamples:
+    var a: StaticDeque[2, int]
+    a.addLast 10
+    a.addLast 20
+    a.addLast 30
+    a.addLast 40
+    assert a[0] == 10
+    assert a[3] == 40
+    doAssertRaises(IndexDefect, echo a[8])
+
+  xBoundsCheck(x, i)
+  x.buf[(x.head + minimumSizeUint(x.N)(i)) and x.mask]
+
+proc `[]`*(x: var StaticDeque; i: Natural): var x.T {.inline.} =
+  ## Accesses the `i`-th element of `deq` and returns a mutable
+  ## reference to it.
+  runnableExamples:
+    var a: StaticDeque[2, int]
+    inc(a[0])
+    assert a[0] == 11
+
+  xBoundsCheck(x, i)
+  x.buf[(x.head + minimumSizeUint(x.N)(i)) and x.mask]
 
 when isMainModule:
   proc test[N: static range[1 .. MaxBitSize]]() =
@@ -51,6 +90,8 @@ when isMainModule:
     x.addLast 123
     doAssert not x.isFull
     doAssert x.len == 1
+    doAssert x[0] == 123
+    doAssertRaises(IndexDefect, echo x[1])
     doAssert x.popFirst == 123
     doAssert not x.isFull
     doAssert x.len == 0
@@ -59,10 +100,15 @@ when isMainModule:
     x.addLast 2
     doAssert x.len == 2
     doAssert not x.isFull
-    doAssert x.popFirst == 1
+    doAssert x[0] == 1 and x[1] == 2
+    inc x[0], 10
+    doAssert x.popFirst == 11
     x.addLast 3
     doAssert x.len == 2
-    doAssert x.popFirst == 2
+    doAssert x[0] == 2 and x[1] == 3
+    inc x[0], 100
+    doAssert x[0] == 102
+    doAssert x.popFirst == 102
     doAssert not x.isFull
     doAssert x.len == 1
     doAssert x.popFirst == 3
