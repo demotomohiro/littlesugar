@@ -1,7 +1,11 @@
 nimTitle	staticDeque	staticDeque.html	module src/littlesugar/staticDeque		0
-nim	StaticDeque	staticDeque.html#StaticDeque	object StaticDeque		20
-nim	high	staticDeque.html#high,StaticDeque	proc high(x: StaticDeque): int		27
-nim	len	staticDeque.html#len,StaticDeque	proc len(x: StaticDeque): int		30
-nim	isFull	staticDeque.html#isFull,StaticDeque	proc isFull(x: StaticDeque): bool		33
-nim	addLast	staticDeque.html#addLast,StaticDeque,sink	proc addLast(x: var StaticDeque; item: sink x.T)		36
-nim	popFirst	staticDeque.html#popFirst,StaticDeque	proc popFirst(x: var StaticDeque): x.T		41
+nim	minimumSizeUint	staticDeque.html#minimumSizeUint.t,staticrange[]	template minimumSizeUint(N: static range[1 .. MaxBitSize]): untyped		2
+nim	StaticDeque	staticDeque.html#StaticDeque	object StaticDeque		23
+nim	high	staticDeque.html#high,StaticDeque	proc high(x: StaticDeque): int		30
+nim	len	staticDeque.html#len,StaticDeque	proc len(x: StaticDeque): int		33
+nim	isFull	staticDeque.html#isFull,StaticDeque	proc isFull(x: StaticDeque): bool		36
+nim	addLast	staticDeque.html#addLast,StaticDeque,sink	proc addLast(x: var StaticDeque; item: sink x.T)		42
+nim	popFirst	staticDeque.html#popFirst,StaticDeque	proc popFirst(x: var StaticDeque): x.T		47
+nim	`[]`	staticDeque.html#[],StaticDeque,Natural	proc `[]`(x: StaticDeque; i: Natural): lent x.T		62
+nim	`[]`	staticDeque.html#[],StaticDeque,Natural_2	proc `[]`(x: var StaticDeque; i: Natural): var x.T		77
+nimgrp	[]	staticDeque.html#[]-procs-all	proc		62
