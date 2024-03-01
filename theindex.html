@@ -21,12 +21,28 @@
   <div class="document" id="documentId">
     <div class="container">
       <h1 class="title">Index</h1>
-      Modules: <a href="bitwiseCopy.html">bitwiseCopy</a>, <a href="expandFirst.html">expandFirst</a>, <a href="namedWhile.html">namedWhile</a>, <a href="replaceNimNodeTree.html">replaceNimNodeTree</a>, <a href="setLambda.html">setLambda</a>, <a href="staticDeque.html">staticDeque</a>, <a href="withAliases.html">withAliases</a>.<br/><p /><h2>API symbols</h2>
-<dl><dt><a name="%60%5B%5D%60" href="#%60%5B%5D%60"><span>`[]`:</span></a></dt><dd><ul class="simple">
+      Modules: <a href="bitwiseCopy.html">bitwiseCopy</a>, <a href="expandFirst.html">expandFirst</a>, <a href="namedWhile.html">namedWhile</a>, <a href="replaceNimNodeTree.html">replaceNimNodeTree</a>, <a href="setLambda.html">setLambda</a>, <a href="staticDeque.html">staticDeque</a>, <a href="staticSeq.html">staticSeq</a>, <a href="withAliases.html">withAliases</a>.<br/><p /><h2>API symbols</h2>
+<dl><dt><a name="%60%5B%5D%3D%60" href="#%60%5B%5D%3D%60"><span>`[]=`:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="staticSeq: proc `[]=`(x: var StaticSeq; i: Natural; val: sink x.T)" href="staticSeq.html#%5B%5D%3D%2CStaticSeq%2CNatural%2Csink">staticSeq: proc `[]=`(x: var StaticSeq; i: Natural; val: sink x.T)</a></li>
+          </ul></dd>
+<dt><a name="%60%5B%5D%60" href="#%60%5B%5D%60"><span>`[]`:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="staticDeque: proc `[]`(x: StaticDeque; i: Natural): lent x.T" href="staticDeque.html#%5B%5D%2CStaticDeque%2CNatural">staticDeque: proc `[]`(x: StaticDeque; i: Natural): lent x.T</a></li>
           <li><a class="reference external"
           data-doc-search-tag="staticDeque: proc `[]`(x: var StaticDeque; i: Natural): var x.T" href="staticDeque.html#%5B%5D%2CStaticDeque%2CNatural_2">staticDeque: proc `[]`(x: var StaticDeque; i: Natural): var x.T</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="staticSeq: proc `[]`(x: StaticSeq; i: Natural): lent x.T" href="staticSeq.html#%5B%5D%2CStaticSeq%2CNatural">staticSeq: proc `[]`(x: StaticSeq; i: Natural): lent x.T</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="staticSeq: proc `[]`(x: var StaticSeq; i: Natural): var x.T" href="staticSeq.html#%5B%5D%2CStaticSeq%2CNatural_2">staticSeq: proc `[]`(x: var StaticSeq; i: Natural): var x.T</a></li>
+          </ul></dd>
+<dt><a name="%60%7B%7D%3D%60" href="#%60%7B%7D%3D%60"><span>`{}=`:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="staticSeq: proc `{}=`(x: var StaticSeq; i: Natural; val: sink x.T)" href="staticSeq.html#%7B%7D%3D%2CStaticSeq%2CNatural%2Csink">staticSeq: proc `{}=`(x: var StaticSeq; i: Natural; val: sink x.T)</a></li>
+          </ul></dd>
+<dt><a name="add" href="#add"><span>add:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="staticSeq: proc add(x: var StaticSeq; item: sink x.T)" href="staticSeq.html#add%2CStaticSeq%2Csink">staticSeq: proc add(x: var StaticSeq; item: sink x.T)</a></li>
           </ul></dd>
 <dt><a name="addLast" href="#addLast"><span>addLast:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -51,14 +67,24 @@
 <dt><a name="high" href="#high"><span>high:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="staticDeque: proc high(x: StaticDeque): int" href="staticDeque.html#high%2CStaticDeque">staticDeque: proc high(x: StaticDeque): int</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="staticSeq: proc high(x: StaticSeq): int" href="staticSeq.html#high%2CStaticSeq">staticSeq: proc high(x: StaticSeq): int</a></li>
           </ul></dd>
 <dt><a name="isFull" href="#isFull"><span>isFull:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="staticDeque: proc isFull(x: StaticDeque): bool" href="staticDeque.html#isFull%2CStaticDeque">staticDeque: proc isFull(x: StaticDeque): bool</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="staticSeq: proc isFull(x: StaticSeq): bool" href="staticSeq.html#isFull%2CStaticSeq">staticSeq: proc isFull(x: StaticSeq): bool</a></li>
           </ul></dd>
 <dt><a name="len" href="#len"><span>len:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="staticDeque: proc len(x: StaticDeque): int" href="staticDeque.html#len%2CStaticDeque">staticDeque: proc len(x: StaticDeque): int</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="staticSeq: proc len(x: StaticSeq): int" href="staticSeq.html#len%2CStaticSeq">staticSeq: proc len(x: StaticSeq): int</a></li>
+          </ul></dd>
+<dt><a name="minimumSizeInt" href="#minimumSizeInt"><span>minimumSizeInt:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="staticSeq: template minimumSizeInt(N: static range[1 .. int.high]): untyped" href="staticSeq.html#minimumSizeInt.t%2Cstaticrange%5B%5D">staticSeq: template minimumSizeInt(N: static range[1 .. int.high]): untyped</a></li>
           </ul></dd>
 <dt><a name="minimumSizeUint" href="#minimumSizeUint"><span>minimumSizeUint:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -84,6 +110,10 @@
 <li><a class="reference external"
           data-doc-search-tag="staticDeque: object StaticDeque" href="staticDeque.html#StaticDeque">staticDeque: object StaticDeque</a></li>
           </ul></dd>
+<dt><a name="StaticSeq" href="#StaticSeq"><span>StaticSeq:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="staticSeq: object StaticSeq" href="staticSeq.html#StaticSeq">staticSeq: object StaticSeq</a></li>
+          </ul></dd>
 <dt><a name="waCompileTime" href="#waCompileTime"><span>waCompileTime:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="withAliases: WithAliasesFlag.waCompileTime" href="withAliases.html#waCompileTime">withAliases: WithAliasesFlag.waCompileTime</a></li>
@@ -104,7 +134,7 @@
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2024-02-28 01:13:09 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2024-03-01 22:00:21 UTC</small>
       </div>
     </div>
   </div>

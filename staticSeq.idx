@@ -1,0 +1,12 @@
+nimTitle	staticSeq	staticSeq.html	module src/littlesugar/staticSeq		0
+nim	minimumSizeInt	staticSeq.html#minimumSizeInt.t,staticrange[]	template minimumSizeInt(N: static range[1 .. int.high]): untyped		1
+nim	StaticSeq	staticSeq.html#StaticSeq	object StaticSeq		14
+nim	high	staticSeq.html#high,StaticSeq	proc high(x: StaticSeq): int		21
+nim	len	staticSeq.html#len,StaticSeq	proc len(x: StaticSeq): int		24
+nim	isFull	staticSeq.html#isFull,StaticSeq	proc isFull(x: StaticSeq): bool		27
+nim	add	staticSeq.html#add,StaticSeq,sink	proc add(x: var StaticSeq; item: sink x.T)		30
+nim	`[]`	staticSeq.html#[],StaticSeq,Natural	proc `[]`(x: StaticSeq; i: Natural): lent x.T		41
+nim	`[]`	staticSeq.html#[],StaticSeq,Natural_2	proc `[]`(x: var StaticSeq; i: Natural): var x.T		45
+nim	`[]=`	staticSeq.html#[]=,StaticSeq,Natural,sink	proc `[]=`(x: var StaticSeq; i: Natural; val: sink x.T)		49
+nim	`{}=`	staticSeq.html#{}=,StaticSeq,Natural,sink	proc `{}=`(x: var StaticSeq; i: Natural; val: sink x.T)		59
+nimgrp	[]	staticSeq.html#[]-procs-all	proc		41
