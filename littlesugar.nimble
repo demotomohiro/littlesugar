@@ -9,7 +9,7 @@ srcDir        = "src"
 
 # Dependencies
 
-requires "nim >= 1.4.2"
+requires "nim >= 2.0.2"
 
 task test, "Run tests":
   selfExec "c -r src/littlesugar/namedWhile.nim"
@@ -19,6 +19,7 @@ task test, "Run tests":
   selfExec "c -r src/littlesugar/expandFirst.nim"
   selfExec "c -r src/littlesugar/setLambda.nim"
   selfExec "c -r src/littlesugar/staticDeque.nim"
+  selfExec "c -r src/littlesugar/staticSeq.nim"
 
 task docgen, "Generate html documents":
   selfExec "doc --outdir:htmldocs --index:on src/littlesugar/namedWhile.nim"
@@ -28,4 +29,5 @@ task docgen, "Generate html documents":
   selfExec "doc --outdir:htmldocs --index:on src/littlesugar/expandFirst.nim"
   selfExec "doc --outdir:htmldocs --index:on src/littlesugar/setLambda.nim"
   selfExec "doc --outdir:htmldocs --index:on src/littlesugar/staticDeque.nim"
+  selfExec "doc --outdir:htmldocs --index:on src/littlesugar/staticSeq.nim"
   selfExec "buildIndex -o:htmldocs/theindex.html htmldocs"
