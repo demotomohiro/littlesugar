@@ -73,6 +73,10 @@
   <li><a class="reference" href="#add%2CStaticSeq%2Csink" title="add(x: var StaticSeq; item: sink x.T)">add(x: var StaticSeq; item: sink x.T)</a></li>
 
 </ul>
+<ul class="simple nested-toc-section">clear
+  <li><a class="reference" href="#clear%2CStaticSeq" title="clear(x: var StaticSeq)">clear(x: var StaticSeq)</a></li>
+
+</ul>
 <ul class="simple nested-toc-section">high
   <li><a class="reference" href="#high%2CStaticSeq" title="high(x: StaticSeq): int">high(x: StaticSeq): int</a></li>
 
@@ -87,6 +91,22 @@
 </ul>
 <ul class="simple nested-toc-section">{}=
   <li><a class="reference" href="#%7B%7D%3D%2CStaticSeq%2CNatural%2Csink" title="`{}=`(x: var StaticSeq; i: Natural; val: sink x.T)">`{}=`(x: var StaticSeq; i: Natural; val: sink x.T)</a></li>
+
+</ul>
+
+    </ul>
+  </details>
+</li>
+<li>
+  <details open>
+    <summary><a class="reference reference-toplevel" href="#15" id="65">Iterators</a></summary>
+    <ul class="simple simple-toc-section">
+      <ul class="simple nested-toc-section">items
+  <li><a class="reference" href="#items.i%2CStaticSeq" title="items(x: StaticSeq): lent x.T">items(x: StaticSeq): lent x.T</a></li>
+
+</ul>
+<ul class="simple nested-toc-section">mitems
+  <li><a class="reference" href="#mitems.i%2CStaticSeq" title="mitems(x: var StaticSeq): var x.T">mitems(x: var StaticSeq): var x.T</a></li>
 
 </ul>
 
@@ -173,6 +193,17 @@
 </div>
 
 </div>
+<div id="clear-procs-all">
+  <div id="clear,StaticSeq">
+  <dt><pre><span class="Keyword">func</span> <a href="#clear%2CStaticSeq"><span class="Identifier">clear</span></a><span class="Other">(</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="staticSeq.html#StaticSeq"><span class="Identifier">StaticSeq</span></a><span class="Other">)</span> {.<span class="Identifier">inline</span>.}</pre></dt>
+  <dd>
+    
+    
+    
+  </dd>
+</div>
+
+</div>
 <div id="high-procs-all">
   <div id="high,StaticSeq">
   <dt><pre><span class="Keyword">func</span> <a href="#high%2CStaticSeq"><span class="Identifier">high</span></a><span class="Other">(</span><span class="Identifier">x</span><span class="Other">:</span> <a href="staticSeq.html#StaticSeq"><span class="Identifier">StaticSeq</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> {.<span class="Identifier">inline</span>.}</pre></dt>
@@ -220,6 +251,34 @@
 
   </dl>
 </div>
+<div class="section" id="15">
+  <h1><a class="toc-backref" href="#15">Iterators</a></h1>
+  <dl class="item">
+    <div id="items-iterators-all">
+  <div id="items.i,StaticSeq">
+  <dt><pre><span class="Keyword">iterator</span> <a href="#items.i%2CStaticSeq"><span class="Identifier">items</span></a><span class="Other">(</span><span class="Identifier">x</span><span class="Other">:</span> <a href="staticSeq.html#StaticSeq"><span class="Identifier">StaticSeq</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">lent</span> <span class="Identifier">x</span><span class="Other">.</span><span class="Identifier">T</span></pre></dt>
+  <dd>
+    
+    
+    
+  </dd>
+</div>
+
+</div>
+<div id="mitems-iterators-all">
+  <div id="mitems.i,StaticSeq">
+  <dt><pre><span class="Keyword">iterator</span> <a href="#mitems.i%2CStaticSeq"><span class="Identifier">mitems</span></a><span class="Other">(</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="staticSeq.html#StaticSeq"><span class="Identifier">StaticSeq</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">x</span><span class="Other">.</span><span class="Identifier">T</span></pre></dt>
+  <dd>
+    
+    
+    
+  </dd>
+</div>
+
+</div>
+
+  </dl>
+</div>
 <div class="section" id="18">
   <h1><a class="toc-backref" href="#18">Templates</a></h1>
   <dl class="item">
@@ -244,7 +303,7 @@
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2024-03-04 06:10:38 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2024-03-04 10:55:11 UTC</small>
       </div>
     </div>
   </div>
