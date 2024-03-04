@@ -63,7 +63,7 @@ func `{}=`*(x: var StaticSeq; i: Natural; val: sink x.T) {.inline.} =
   ## `len` is automatically extended to `i + 1`,
   ## and elements in between old `len` to new `len` has default values.
   boundsCheck2(x, i)
-  if x.privateLen < i:
+  if x.privateLen <= i:
     x.privateLen = minimumSizeInt(x.N)(i + 1)
   x.data[i] = val
 
@@ -94,6 +94,10 @@ when isMainModule:
       doAssert x[0] == 100 and x[1] == 0 and x[2] == 102
       doAssertRaises(IndexDefect):
         discard x[3]
+      x{3} = 103
+      doAssert x.high == 3
+      doAssert x.len == 4
+      doAssert x[0] == 100 and x[1] == 0 and x[2] == 102 and x[3] == 103
 
     block:
       var x: StaticSeq[N, int]
