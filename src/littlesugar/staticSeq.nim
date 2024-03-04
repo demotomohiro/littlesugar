@@ -67,6 +67,19 @@ func `{}=`*(x: var StaticSeq; i: Natural; val: sink x.T) {.inline.} =
     x.privateLen = minimumSizeInt(x.N)(i + 1)
   x.data[i] = val
 
+iterator items*(x: StaticSeq): lent x.T =
+  for i in 0 ..< x.privateLen:
+    yield x.data[i]
+
+iterator mitems*(x: var StaticSeq): var x.T =
+  for i in 0 ..< x.privateLen:
+    yield x.data[i]
+
+func clear*(x: var StaticSeq) {.inline.} =
+  for i in x.mitems:
+    reset i
+  x.privateLen = 0
+
 when isMainModule:
   proc testRun[N: static Natural]() =
     block:
@@ -98,6 +111,25 @@ when isMainModule:
       doAssert x.high == 3
       doAssert x.len == 4
       doAssert x[0] == 100 and x[1] == 0 and x[2] == 102 and x[3] == 103
+      var s = 0
+      for i in x:
+        s = s * 100 + i
+      doAssert s == 100010303
+      doAssert x.len == 4
+
+      for i in x.mitems:
+        i = 123
+        break
+      doAssert x.len == 4
+      doAssert x[0]  == 123 and x[1] == 0 and x[2] == 102 and x[3] == 103
+
+      for i in x.mitems:
+        i = 321
+      doAssert x.len == 4
+      doAssert x[0] == 321 and x[1] == 321 and x[2] == 321 and x[3] == 321
+
+      x.clear()
+      doAssert x.len == 0
 
     block:
       var x: StaticSeq[N, int]
