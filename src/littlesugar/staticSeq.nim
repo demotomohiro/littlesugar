@@ -80,6 +80,19 @@ func clear*(x: var StaticSeq) {.inline.} =
     reset i
   x.privateLen = 0
 
+func `==`*[N: static int](x: StaticSeq; y: array[N, x.T]): bool =
+  when x.N < N:
+    {.error: "Array size must be equal or smaller than StaticSeq.N".}
+  else:
+    if x.len != N:
+      return false
+
+    for i in 0 ..< x.len:
+      if x[i] != y[i]:
+        return false
+
+    true
+
 when isMainModule:
   proc testRun[N: static Natural]() =
     block:
@@ -93,6 +106,7 @@ when isMainModule:
       doAssert x.high == 0
       doAssert x.len == 1
       doAssert x[0] == 100
+      doAssert x == [100]
       doAssert not x.isFull
       doAssertRaises(IndexDefect):
         discard x[1]
@@ -105,6 +119,7 @@ when isMainModule:
       doAssert x.len == 3
       doAssert not x.isFull
       doAssert x[0] == 100 and x[1] == 0 and x[2] == 102
+      doAssert x == [100, 0, 102]
       doAssertRaises(IndexDefect):
         discard x[3]
       x{3} = 103
@@ -122,11 +137,13 @@ when isMainModule:
         break
       doAssert x.len == 4
       doAssert x[0]  == 123 and x[1] == 0 and x[2] == 102 and x[3] == 103
+      doAssert x == [123, 0, 102, 103]
 
       for i in x.mitems:
         i = 321
       doAssert x.len == 4
       doAssert x[0] == 321 and x[1] == 321 and x[2] == 321 and x[3] == 321
+      doAssert x == [321, 321, 321, 321]
 
       x.clear()
       doAssert x.len == 0
