@@ -1,16 +1,17 @@
 nimTitle	staticSeq	staticSeq.html	module src/littlesugar/staticSeq		0
 nim	minimumSizeInt	staticSeq.html#minimumSizeInt.t,staticrange[]	template minimumSizeInt(N: static range[1 .. int.high]): untyped		1
 nim	StaticSeq	staticSeq.html#StaticSeq	object StaticSeq		14
-nim	high	staticSeq.html#high,StaticSeq	proc high(x: StaticSeq): int		21
-nim	len	staticSeq.html#len,StaticSeq	proc len(x: StaticSeq): int		24
-nim	isFull	staticSeq.html#isFull,StaticSeq	proc isFull(x: StaticSeq): bool		27
-nim	add	staticSeq.html#add,StaticSeq,sink	proc add(x: var StaticSeq; item: sink x.T)		30
-nim	`[]`	staticSeq.html#[],StaticSeq,Natural	proc `[]`(x: StaticSeq; i: Natural): lent x.T		41
-nim	`[]`	staticSeq.html#[],StaticSeq,Natural_2	proc `[]`(x: var StaticSeq; i: Natural): var x.T		45
-nim	`[]=`	staticSeq.html#[]=,StaticSeq,Natural,sink	proc `[]=`(x: var StaticSeq; i: Natural; val: sink x.T)		49
-nim	`{}=`	staticSeq.html#{}=,StaticSeq,Natural,sink	proc `{}=`(x: var StaticSeq; i: Natural; val: sink x.T)		59
-nim	items	staticSeq.html#items.i,StaticSeq	iterator items(x: StaticSeq): lent x.T		70
-nim	mitems	staticSeq.html#mitems.i,StaticSeq	iterator mitems(x: var StaticSeq): var x.T		74
-nim	clear	staticSeq.html#clear,StaticSeq	proc clear(x: var StaticSeq)		78
-nim	`==`	staticSeq.html#==,StaticSeq,array[N,]	proc `==`[N: static int](x: StaticSeq; y: array[N, x.T]): bool		83
-nimgrp	[]	staticSeq.html#[]-procs-all	proc		41
+nim	high	staticSeq.html#high,StaticSeq	proc high(x: StaticSeq): int		22
+nim	len	staticSeq.html#len,StaticSeq	proc len(x: StaticSeq): int		25
+nim	isFull	staticSeq.html#isFull,StaticSeq	proc isFull(x: StaticSeq): bool		28
+nim	add	staticSeq.html#add,StaticSeq,sink	proc add(x: var StaticSeq; item: sink x.T)		31
+nim	setLen	staticSeq.html#setLen,StaticSeq,Natural	proc setLen(x: var StaticSeq; newLen: Natural)		36
+nim	`[]`	staticSeq.html#[],StaticSeq,Natural	proc `[]`(x: StaticSeq; i: Natural): lent x.T		52
+nim	`[]`	staticSeq.html#[],StaticSeq,Natural_2	proc `[]`(x: var StaticSeq; i: Natural): var x.T		56
+nim	`[]=`	staticSeq.html#[]=,StaticSeq,Natural,sink	proc `[]=`(x: var StaticSeq; i: Natural; val: sink x.T)		60
+nim	`{}=`	staticSeq.html#{}=,StaticSeq,Natural,sink	proc `{}=`(x: var StaticSeq; i: Natural; val: sink x.T)		70
+nim	items	staticSeq.html#items.i,StaticSeq	iterator items(x: StaticSeq): lent x.T		81
+nim	mitems	staticSeq.html#mitems.i,StaticSeq	iterator mitems(x: var StaticSeq): var x.T		85
+nim	clear	staticSeq.html#clear,StaticSeq	proc clear(x: var StaticSeq)		89
+nim	`==`	staticSeq.html#==,StaticSeq,array[N,]	proc `==`[N: static int](x: StaticSeq; y: array[N, x.T]): bool		94
+nimgrp	[]	staticSeq.html#[]-procs-all	proc		52

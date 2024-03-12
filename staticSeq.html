@@ -93,6 +93,10 @@
   <li><a class="reference" href="#len%2CStaticSeq" title="len(x: StaticSeq): int">len(x: StaticSeq): int</a></li>
 
 </ul>
+<ul class="simple nested-toc-section">setLen
+  <li><a class="reference" href="#setLen%2CStaticSeq%2CNatural" title="setLen(x: var StaticSeq; newLen: Natural)">setLen(x: var StaticSeq; newLen: Natural)</a></li>
+
+</ul>
 <ul class="simple nested-toc-section">{}=
   <li><a class="reference" href="#%7B%7D%3D%2CStaticSeq%2CNatural%2Csink" title="`{}=`(x: var StaticSeq; i: Natural; val: sink x.T)">`{}=`(x: var StaticSeq; i: Natural; val: sink x.T)</a></li>
 
@@ -146,7 +150,7 @@
   </pre></dt>
   <dd>
     
-    This is similar to seq, but internal storage size is fixed to <tt class="docutils literal"><span class="pre"><span class="Identifier">N</span></span></tt>. So you can add only <tt class="docutils literal"><span class="pre"><span class="Identifier">N</span></span></tt> items to this. Uses array as internal storage.
+    This is similar to seq, but internal storage size is fixed to <tt class="docutils literal"><span class="pre"><span class="Identifier">N</span></span></tt> and it can be allocated on stack. So you can add only <tt class="docutils literal"><span class="pre"><span class="Identifier">N</span></span></tt> items to this. Uses array as internal storage.
     
   </dd>
 </div>
@@ -252,6 +256,17 @@
 </div>
 
 </div>
+<div id="setLen-procs-all">
+  <div id="setLen,StaticSeq,Natural">
+  <dt><pre><span class="Keyword">func</span> <a href="#setLen%2CStaticSeq%2CNatural"><span class="Identifier">setLen</span></a><span class="Other">(</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="staticSeq.html#StaticSeq"><span class="Identifier">StaticSeq</span></a><span class="Other">;</span> <span class="Identifier">newLen</span><span class="Other">:</span> <span class="Identifier">Natural</span><span class="Other">)</span></pre></dt>
+  <dd>
+    
+    
+    
+  </dd>
+</div>
+
+</div>
 <div id="{}=-procs-all">
   <div id="{}=,StaticSeq,Natural,sink">
   <dt><pre><span class="Keyword">func</span> <a href="#%7B%7D%3D%2CStaticSeq%2CNatural%2Csink"><span class="Identifier">`{}=`</span></a><span class="Other">(</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="staticSeq.html#StaticSeq"><span class="Identifier">StaticSeq</span></a><span class="Other">;</span> <span class="Identifier">i</span><span class="Other">:</span> <span class="Identifier">Natural</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">sink</span> <span class="Identifier">x</span><span class="Other">.</span><span class="Identifier">T</span><span class="Other">)</span> {.<span class="Identifier">inline</span>.}</pre></dt>
@@ -318,7 +333,7 @@
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2024-03-05 23:20:07 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2024-03-12 14:56:21 UTC</small>
       </div>
     </div>
   </div>
