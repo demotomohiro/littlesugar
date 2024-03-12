@@ -24,3 +24,6 @@ Assign an anonymous procedure to a procedual type variable easily.
 
 ### [staticDeque](https://demotomohiro.github.io/littlesugar/staticDeque.html)
 This is similar to std/deques, but has fixed size storage.
+
+### [staticSeq](https://demotomohiro.github.io/littlesugar/staticSeq.html)
+This is similar to seq, but internal storage size is fixed to `N`.
