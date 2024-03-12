@@ -33,6 +33,16 @@ func add*(x: var StaticSeq; item: sink x.T) =
   x.data[x.privateLen] = item
   inc x.privateLen
 
+func setLen*(x: var StaticSeq; newLen: Natural) =
+  when compileOption("boundChecks"):
+    if unlikely(newLen > x.N):
+      raise newException(RangeDefect,
+                         "newLen is too large: " & $newLen & " > " & $x.N)
+  for i in newLen ..< x.privateLen:
+    reset x.data[i]
+
+  x.privateLen = typeof(x.privateLen)(newLen)
+
 template boundsCheck(x, i) =
   when compileOption("boundChecks"):
     if unlikely(i >= x.privateLen):
@@ -159,6 +169,44 @@ when isMainModule:
       doAssert x.len == N
       for i in 0 ..< N:
         doAssert x[i] == i
+
+    block:
+      var x: StaticSeq[N, int]
+      x.setLen(1)
+      doAssert x.len == 1
+      doAssert x[0] == 0
+      x[0] = 1
+      x.setLen(0)
+      doAssert x.len == 0
+      x.setLen(2)
+      doAssert x.len == 2
+      doAssert x[0] == 0 and x[1] == 0
+      x[0] = 11
+      x[1] = 12
+      x.setLen(N)
+      doAssert x.len == N
+      doAssert x.isFull
+      doAssert x[0] == 11 and x[1] == 12
+      x[N - 1] = 999
+      x[N - 2] = 888
+      x.setLen(N - 1)
+      doAssert not x.isFull
+      doAssert x.len == N - 1
+      doAssert x[0] == 11 and x[1] == 12
+      doAssert x[N - 2] == 888
+      x.setLen(N)
+      doAssert x.len == N
+      doAssert x.isFull
+      doAssert x[0] == 11 and x[1] == 12
+      doAssert x[N - 2] == 888 and x[N - 1] == 0
+      x.setLen(0)
+      x.setLen(N)
+      doAssert x.len == N
+      doAssert x.isFull
+      doAssert x[0] == 0 and x[1] == 0
+      doAssert x[N - 2] == 0 and x[N - 1] == 0
+      doAssertRaises(RangeDefect):
+        x.setLen(N + 1)
 
   proc test[N: static Natural; T: SomeInteger]() =
     var x: StaticSeq[N, int]
