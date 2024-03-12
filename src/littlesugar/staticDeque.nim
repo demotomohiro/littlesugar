@@ -21,9 +21,10 @@ template minimumSizeUint*(N: static range[1 .. MaxBitSize]): untyped =
 
 type
   StaticDeque*[N: static range[1 .. MaxBitSize]; T] = object
-    ## This is similar to std/deques, but has fixed size storage.
+    ## This is similar to std/deques, but has fixed size storage
+    ## that can be allocated on stack.
     ##
-    ## This has a buffer to hold 2^N elements.
+    ## This has an array to hold 2^N elements.
     tail, head: minimumSizeUint(N)
     buf: array[1 shl N, T]
 

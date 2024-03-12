@@ -12,7 +12,8 @@ template minimumSizeInt*(N: static range[1 .. int.high]): untyped =
 
 type
   StaticSeq*[N: static Natural; T] = object
-    ## This is similar to seq, but internal storage size is fixed to `N`.
+    ## This is similar to seq, but internal storage size is fixed to `N`
+    ## and it can be allocated on stack.
     ## So you can add only `N` items to this.
     ## Uses array as internal storage.
     privateLen: minimumSizeInt(N)
