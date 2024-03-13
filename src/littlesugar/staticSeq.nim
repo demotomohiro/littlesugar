@@ -104,6 +104,17 @@ func `==`*[N: static int](x: StaticSeq; y: array[N, x.T]): bool =
 
     true
 
+func toStaticSeq[N: static Natural; T](src: static array[N, T]): StaticSeq[N, T] =
+  for i in src:
+    result.add i
+
+func toStaticSeq(src: static string): auto =
+  var res: StaticSeq[src.len, char]
+  for i in src:
+    res.add i
+
+  res
+
 when isMainModule:
   proc testRun[N: static Natural]() =
     block:
@@ -220,3 +231,14 @@ when isMainModule:
   test[32766, int16]()
   test[32767, int16]()
   test[32768, int32]()
+
+  block:
+    let x = [11, 22, 33].toStaticSeq
+    doAssert x.N == 3 and x.len == 3 and x.isFull
+    doAssert x[0] == 11 and x[1] == 22 and x[2] == 33
+
+  block:
+    let x = "foo".toStaticSeq
+    doAssert x.N == 3 and x.len == 3 and x.isFull
+    doAssert x[0] == 'f' and x[1] == 'o' and x[2] == 'o'
+    doAssert "abcd".toStaticSeq == ['a', 'b', 'c', 'd']
