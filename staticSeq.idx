@@ -14,4 +14,7 @@ nim	items	staticSeq.html#items.i,StaticSeq	iterator items(x: StaticSeq): lent x.
 nim	mitems	staticSeq.html#mitems.i,StaticSeq	iterator mitems(x: var StaticSeq): var x.T		85
 nim	clear	staticSeq.html#clear,StaticSeq	proc clear(x: var StaticSeq)		89
 nim	`==`	staticSeq.html#==,StaticSeq,array[N,]	proc `==`[N: static int](x: StaticSeq; y: array[N, x.T]): bool		94
+nim	toStaticSeq	staticSeq.html#toStaticSeq,staticarray[N,T]	proc toStaticSeq[N: static Natural; T](src: static array[N, T]): StaticSeq[N, T]		107
+nim	toStaticSeq	staticSeq.html#toStaticSeq,staticstring	proc toStaticSeq(src: static string): auto		111
+nimgrp	tostaticseq	staticSeq.html#toStaticSeq-procs-all	proc		107
 nimgrp	[]	staticSeq.html#[]-procs-all	proc		52
