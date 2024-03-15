@@ -104,11 +104,11 @@ func `==`*[N: static int](x: StaticSeq; y: array[N, x.T]): bool =
 
     true
 
-func toStaticSeq[N: static Natural; T](src: static array[N, T]): StaticSeq[N, T] =
+func toStaticSeq*[N: static Natural; T](src: static array[N, T]): StaticSeq[N, T] =
   for i in src:
     result.add i
 
-func toStaticSeq(src: static string): auto =
+func toStaticSeq*(src: static string): auto =
   var res: StaticSeq[src.len, char]
   for i in src:
     res.add i
