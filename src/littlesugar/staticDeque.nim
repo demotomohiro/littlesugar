@@ -87,6 +87,18 @@ proc `[]`*(x: var StaticDeque; i: Natural): var x.T {.inline.} =
   xBoundsCheck(x, i)
   x.buf[(x.head + minimumSizeUint(x.N)(i)) and x.mask]
 
+iterator items*(x: StaticDeque): x.T =
+  var i = x.head
+  while i != x.tail:
+    yield x.buf[i and x.mask]
+    inc i
+
+iterator mitems*(x: var StaticDeque): var x.T =
+  var i = x.head
+  while i != x.tail:
+    yield x.buf[i and x.mask]
+    inc i
+
 when isMainModule:
   proc test[N: static range[1 .. MaxBitSize]]() =
     var x: StaticDeque[N, int]
@@ -147,6 +159,85 @@ when isMainModule:
     doAssert x.popFirst == 54321
     doAssert x.len == 0
     doAssert not x.isFull
+
+    block:
+      proc testIterator(x: var StaticDeque) =
+        doAssert x.len == 0
+        var c = 0
+        for i in x:
+          inc c
+        doAssert c == 0
+
+        x.addLast 123
+        c = 0
+        for i in x:
+          doAssert i == 123
+          inc c
+        doAssert c == 1
+        doAssert x.popFirst == 123
+        c = 0
+        for i in x:
+          inc c
+        doAssert c == 0
+
+        x.addLast 111
+        x.addLast 222
+        c = 0
+        for i in x:
+          if c == 0:
+            doAssert i == 111
+          elif c == 1:
+            doAssert i == 222
+          inc c
+        doAssert c == 2
+
+        doAssert x.popFirst == 111
+        c = 0
+        for i in x:
+          doAssert i == 222
+          inc c
+        doAssert c == 1
+        doAssert x.popFirst == 222
+        c = 0
+        for i in x:
+          inc c
+        doAssert c == 0
+
+        x.addLast 100
+        for i in x.mitems:
+          doAssert i == 100
+          i = 1000
+        doAssert x.popFirst == 1000
+        x.addLast 123
+        x.addLast 321
+        c = 0
+        for i in x.mitems:
+          if c == 0:
+            doAssert i == 123
+          elif c == 1:
+            doAssert i == 321
+          inc c
+          dec i
+        doAssert c == 2
+        doAssert x.popFirst == 122
+        doAssert x.popFirst == 320
+
+      var
+        x: StaticDeque[N, int]
+        c = 0
+      testIterator(x)
+      for i in 0 .. x.high:
+        x.addLast i + 123
+      for i in x:
+        doAssert i == c + 123
+        inc c
+      doAssert c == x.high + 1
+      for i in 0 .. x.high:
+        x.popFirst
+      testIterator(x)
+      doAssert x.len == 0
+      testIterator(x)
+      doAssert x.len == 0
 
   block:
     var x: StaticDeque[2, int]
