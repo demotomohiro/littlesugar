@@ -8,4 +8,6 @@ nim	addLast	staticDeque.html#addLast,StaticDeque,sink	proc addLast(x: var Static
 nim	popFirst	staticDeque.html#popFirst,StaticDeque	proc popFirst(x: var StaticDeque): x.T		48
 nim	`[]`	staticDeque.html#[],StaticDeque,Natural	proc `[]`(x: StaticDeque; i: Natural): lent x.T		63
 nim	`[]`	staticDeque.html#[],StaticDeque,Natural_2	proc `[]`(x: var StaticDeque; i: Natural): var x.T		78
+nim	items	staticDeque.html#items.i,StaticDeque	iterator items(x: StaticDeque): x.T		90
+nim	mitems	staticDeque.html#mitems.i,StaticDeque	iterator mitems(x: var StaticDeque): var x.T		96
 nimgrp	[]	staticDeque.html#[]-procs-all	proc		63
