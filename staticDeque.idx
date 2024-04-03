@@ -2,12 +2,14 @@ nimTitle	staticDeque	staticDeque.html	module src/littlesugar/staticDeque		0
 nim	minimumSizeUint	staticDeque.html#minimumSizeUint.t,staticrange[]	template minimumSizeUint(N: static range[1 .. MaxBitSize]): untyped		2
 nim	StaticDeque	staticDeque.html#StaticDeque	object StaticDeque		23
 nim	high	staticDeque.html#high,StaticDeque	proc high(x: StaticDeque): int		31
-nim	len	staticDeque.html#len,StaticDeque	proc len(x: StaticDeque): int		34
-nim	isFull	staticDeque.html#isFull,StaticDeque	proc isFull(x: StaticDeque): bool		37
-nim	addLast	staticDeque.html#addLast,StaticDeque,sink	proc addLast(x: var StaticDeque; item: sink x.T)		43
-nim	popFirst	staticDeque.html#popFirst,StaticDeque	proc popFirst(x: var StaticDeque): x.T		48
-nim	`[]`	staticDeque.html#[],StaticDeque,Natural	proc `[]`(x: StaticDeque; i: Natural): lent x.T		63
-nim	`[]`	staticDeque.html#[],StaticDeque,Natural_2	proc `[]`(x: var StaticDeque; i: Natural): var x.T		78
-nim	items	staticDeque.html#items.i,StaticDeque	iterator items(x: StaticDeque): x.T		90
-nim	mitems	staticDeque.html#mitems.i,StaticDeque	iterator mitems(x: var StaticDeque): var x.T		96
-nimgrp	[]	staticDeque.html#[]-procs-all	proc		63
+nim	maxLen	staticDeque.html#maxLen,typedesc[StaticDeque]	proc maxLen(T: typedesc[StaticDeque]): int		34
+nim	maxLen	staticDeque.html#maxLen.t,StaticDeque	template maxLen(x: StaticDeque): int		37
+nim	len	staticDeque.html#len,StaticDeque	proc len(x: StaticDeque): int		40
+nim	isFull	staticDeque.html#isFull,StaticDeque	proc isFull(x: StaticDeque): bool		43
+nim	addLast	staticDeque.html#addLast,StaticDeque,sink	proc addLast(x: var StaticDeque; item: sink x.T)		49
+nim	popFirst	staticDeque.html#popFirst,StaticDeque	proc popFirst(x: var StaticDeque): x.T		54
+nim	`[]`	staticDeque.html#[],StaticDeque,Natural	proc `[]`(x: StaticDeque; i: Natural): lent x.T		69
+nim	`[]`	staticDeque.html#[],StaticDeque,Natural_2	proc `[]`(x: var StaticDeque; i: Natural): var x.T		84
+nim	items	staticDeque.html#items.i,StaticDeque	iterator items(x: StaticDeque): x.T		96
+nim	mitems	staticDeque.html#mitems.i,StaticDeque	iterator mitems(x: var StaticDeque): var x.T		102
+nimgrp	[]	staticDeque.html#[]-procs-all	proc		69
