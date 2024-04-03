@@ -31,6 +31,12 @@ type
 func high*(x: StaticDeque): int =
   x.buf.high
 
+func maxLen*(T: typedesc[StaticDeque]): int {.compileTime.} =
+  T.buf.len
+
+template maxLen*(x: StaticDeque): int =
+  x.typeof.maxLen
+
 func len*(x: StaticDeque): int =
   (x.tail - x.head).int
 
@@ -268,3 +274,8 @@ when isMainModule:
     doAssert sizeof(x.buf) == sizeof(int) * 65536
     doAssert x.tail is uint32
     test[16]()
+
+  block:
+    var x: StaticDeque[8, int]
+    static: doAssert compiles(array[x.typeof.maxLen, int])
+    static: doAssert compiles(array[x.maxLen, int])
