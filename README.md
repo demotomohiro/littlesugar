@@ -27,3 +27,6 @@ This is similar to std/deques, but has fixed size storage that can be allocated 
 
 ### [staticSeq](https://demotomohiro.github.io/littlesugar/staticSeq.html)
 This is similar to seq, but internal storage size is fixed to `N` and it can be allocated on stack.
+
+### [reinterpretPtr](https://demotomohiro.github.io/littlesugar/reinterpretPtr.html)
+Reinterpret the given pointer to a different pointer type.

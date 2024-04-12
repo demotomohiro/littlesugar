@@ -30,4 +30,5 @@ task docgen, "Generate html documents":
   selfExec "doc --outdir:htmldocs --index:on src/littlesugar/setLambda.nim"
   selfExec "doc --outdir:htmldocs --index:on src/littlesugar/staticDeque.nim"
   selfExec "doc --outdir:htmldocs --index:on src/littlesugar/staticSeq.nim"
+  selfExec "doc --outdir:htmldocs --index:on src/littlesugar/reinterpretPtr.nim"
   selfExec "buildIndex -o:htmldocs/theindex.html htmldocs"
