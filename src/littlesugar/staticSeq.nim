@@ -28,8 +28,7 @@ func len*(x: StaticSeq): int {.inline.} =
 func isFull*(x: StaticSeq): bool {.inline.} =
   x.privateLen == x.N
 
-func add*(x: var StaticSeq; item: sink x.T) =
-  assert not x.isFull
+func add*(x: var StaticSeq; item: sink x.T) {.inline.} =
   x.data[x.privateLen] = item
   inc x.privateLen
 
