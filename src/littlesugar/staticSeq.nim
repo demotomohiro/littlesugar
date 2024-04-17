@@ -115,7 +115,22 @@ func toStaticSeq*(src: static string): auto =
 
   res
 
+template toOpenArray*(x: StaticSeq; first, last: Natural): untyped =
+  ## Returns `openArray[T]` so that you can pass a part of `x` to
+  ## a `openArray[T]` parameter of procs.
+  # It seems it cannot be a proc.
+  boundsCheck(x, first)
+  boundsCheck(x, last)
+  x.data.toOpenArray(first, last)
+
+template toOpenArray*(x: StaticSeq; first: Natural = 0): untyped =
+  x.toOpenArray(first, x.high)
+
 when isMainModule:
+  proc openArrayTest[T](x: openArray[T]; firstVal, lastVal: T) =
+    doAssert x[0] == firstVal
+    doAssert x[^1] == lastVal
+
   proc testRun[N: static Natural]() =
     block:
       var x: StaticSeq[N, int]
@@ -218,6 +233,25 @@ when isMainModule:
       doAssert x[N - 2] == 0 and x[N - 1] == 0
       doAssertRaises(RangeDefect):
         x.setLen(N + 1)
+
+    block:
+      var x: StaticSeq[N, int]
+      x.setLen(1)
+      openArrayTest(x.toOpenArray, 0, 0)
+      openArrayTest(x.toOpenArray(0, 0), 0, 0)
+      x[0] = 123
+      openArrayTest(x.toOpenArray, 123, 123)
+      openArrayTest(x.toOpenArray(0, 0), 123, 123)
+      x.add 321
+      openArrayTest(x.toOpenArray, 123, 321)
+      openArrayTest(x.toOpenArray(0, 0), 123, 123)
+      openArrayTest(x.toOpenArray(0, 1), 123, 321)
+      x.add 567
+      openArrayTest(x.toOpenArray, 123, 567)
+      openArrayTest(x.toOpenArray(0, 1), 123, 321)
+      openArrayTest(x.toOpenArray(1, 1), 321, 321)
+      openArrayTest(x.toOpenArray(1, 2), 321, 567)
+      openArrayTest(x.toOpenArray(0, 2), 123, 567)
 
   proc test[N: static Natural; T: SomeInteger]() =
     var x: StaticSeq[N, int]
