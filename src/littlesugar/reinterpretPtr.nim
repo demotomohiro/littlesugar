@@ -1,4 +1,4 @@
-func reinterpretPtr*[T: ptr](src: ptr or pointer): T =
+func reinterpretPtr*[T: ptr](src: ptr or pointer): T {.inline.} =
   ## Reinterpret the given pointer to a different pointer type.
   ##
   ## This is same to cast, but only accepts a pointer type for safer type convertion.
