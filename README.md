@@ -30,3 +30,6 @@ This is similar to seq, but internal storage size is fixed to `N` and it can be 
 
 ### [reinterpretPtr](https://demotomohiro.github.io/littlesugar/reinterpretPtr.html)
 Reinterpret the given pointer to a different pointer type.
+
+### [unpackToArgs](https://demotomohiro.github.io/littlesugar/unpackToArgs.html)
+Unpack tuples or arrrays to arguments for a procedure call or an array constructor.

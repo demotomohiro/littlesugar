@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.1.0"
+version       = "0.2.0"
 author        = "demotomohiro"
 description   = "Nim macros that might help you writing nim code"
 license       = "MIT"
@@ -20,6 +20,7 @@ task test, "Run tests":
   selfExec "c -r src/littlesugar/setLambda.nim"
   selfExec "c -r src/littlesugar/staticDeque.nim"
   selfExec "c -r src/littlesugar/staticSeq.nim"
+  selfExec "c -r src/littlesugar/unpackToArgs.nim"
 
 task docgen, "Generate html documents":
   selfExec "doc --outdir:htmldocs --index:on src/littlesugar/namedWhile.nim"
@@ -31,4 +32,5 @@ task docgen, "Generate html documents":
   selfExec "doc --outdir:htmldocs --index:on src/littlesugar/staticDeque.nim"
   selfExec "doc --outdir:htmldocs --index:on src/littlesugar/staticSeq.nim"
   selfExec "doc --outdir:htmldocs --index:on src/littlesugar/reinterpretPtr.nim"
+  selfExec "doc --outdir:htmldocs --index:on src/littlesugar/unpackToArgs.nim"
   selfExec "buildIndex -o:htmldocs/theindex.html htmldocs"
