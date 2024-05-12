@@ -1,0 +1,2 @@
+nimTitle	unpackToArgs	unpackToArgs.html	module src/littlesugar/unpackToArgs		0
+nim	unpackToArgs	unpackToArgs.html#unpackToArgs.m,varargs[untyped]	macro unpackToArgs(args: varargs[untyped]): untyped		32
