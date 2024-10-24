@@ -1,8 +1,5 @@
 const MaxBitSize = sizeof(pointer) * 8 - 1
-template minimumSizeUint*(N: static range[1 .. MaxBitSize]): untyped =
-  # In nim-2.0.2, if this template was not exported, causes compile error.
-  # It is fix in nim-2.1.1.
-  #
+template minimumSizeUint(N: static range[1 .. MaxBitSize]): untyped =
   # Although Nim doesn't recommend using uint, StaticDeque use it.
   # Because wrap around doesn't cause problems in this use case.
   # And `tail` - `head` returns correct buffer size even if `tail` < `head`.
