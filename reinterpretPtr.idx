@@ -1,2 +1,2 @@
 nimTitle	reinterpretPtr	reinterpretPtr.html	module src/littlesugar/reinterpretPtr		0
-nim	reinterpretPtr	reinterpretPtr.html#reinterpretPtr	proc reinterpretPtr[T: ptr](src: ptr or pointer): T		1
+nim	reinterpretPtr	reinterpretPtr.html#reinterpretPtr	proc reinterpretPtr[T: ptr or cstring](src: ptr or pointer): T		1

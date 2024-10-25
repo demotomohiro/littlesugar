@@ -18,6 +18,6 @@ nim	toStaticSeq	staticSeq.html#toStaticSeq,staticarray[N,T]	proc toStaticSeq[N: 
 nim	toStaticSeq	staticSeq.html#toStaticSeq,staticstring	proc toStaticSeq(src: static string): auto		110
 nim	toOpenArray	staticSeq.html#toOpenArray.t,StaticSeq,Natural,Natural	template toOpenArray(x: StaticSeq; first, last: Natural): untyped		117
 nim	toOpenArray	staticSeq.html#toOpenArray.t,StaticSeq,Natural	template toOpenArray(x: StaticSeq; first: Natural = 0): untyped		125
-nimgrp	tostaticseq	staticSeq.html#toStaticSeq-procs-all	proc		106
 nimgrp	[]	staticSeq.html#[]-procs-all	proc		51
+nimgrp	tostaticseq	staticSeq.html#toStaticSeq-procs-all	proc		106
 nimgrp	toopenarray	staticSeq.html#toOpenArray-templates-all	template		117
