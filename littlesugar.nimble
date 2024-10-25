@@ -20,6 +20,7 @@ task test, "Run tests":
   selfExec "c -r src/littlesugar/setLambda.nim"
   selfExec "c -r src/littlesugar/staticDeque.nim"
   selfExec "c -r src/littlesugar/staticSeq.nim"
+  selfExec "c -r src/littlesugar/reinterpretPtr.nim"
   selfExec "c -r src/littlesugar/unpackToArgs.nim"
 
 task docgen, "Generate html documents":
